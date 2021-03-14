@@ -16,6 +16,8 @@ class StudentMember extends Model
       public function setChapterAttribute($value)
      {
          $this->attributes['chapter'] = strtoupper($value);
+
+
      }
 
       public function getNameAttribute()
