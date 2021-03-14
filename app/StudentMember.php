@@ -12,10 +12,6 @@ class StudentMember extends Model
           return $query->OrderBy('created_at' , 'desc')->whereChapter('Harare');
       }
 
-      public function getEmailAttribute($email)
-      {
-      return 'Chibaba ' . $email;
-      } 
 
       public function setChapterAttribute($value)
      {
@@ -27,4 +23,16 @@ class StudentMember extends Model
           return $this->attributes['firstname'].
           ' ' . $this->attributes['surname'];
      }
+
+     public function user()
+     {
+          return $this->belongsTo('App\User');
+     }
+
+     public function order()
+     {
+          return $this->hasMany('App\Models\Order');
+     }
+
+
 }

@@ -75,12 +75,25 @@ class ClientController extends Controller
 
         // $test = StudentMember::CheapButBig()->get();
 
-        // $test = StudentMember::find(14);
-        // dd($test->name);
+        $tests = StudentMember::all();
+        
+
+        // $test = $tests->get(100 , "Not Found");
 
 
-        $member = StudentMember::whereEmail($email)->first();
-        return view('member.member' , ['member' => $member]);
+        
+        $tests->each(function($tudent){
+             dd($tudent);
+        });
+    
+        
+
+
+        // $member = StudentMember::whereEmail($email)->first();
+        // $user = $member->user()->email;
+        // dd($user);
+
+        // return view('member.member' , ['member' => $member]);
     }
 
     public function graduate()

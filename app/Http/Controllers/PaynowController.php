@@ -34,7 +34,7 @@ class PaynowController extends Controller
     }
 
     public function initialise(Request $request)
-    {  
+    {
         $path = '/public/Student Documents';
         $filename1 = 'Student-'.\request('surname'). '-' .\request()->file('national_id')->getClientOriginalExtension();
         request()->file('national_id')->storeAs($path ,$filename1);
@@ -61,14 +61,14 @@ class PaynowController extends Controller
           'national_id' => $national_id,
         ]);
 
-    
+
         $user = User::UpdateOrCreate([
             'name' => $member->firstname . $member->surname,
             'email' => $member->email,
             'password' =>$member->password,
         ]);
 
-  
+
         $order =  Order::Create([
             'price' => $request->amount,
             'email' => session('membership')['email'],
@@ -76,22 +76,22 @@ class PaynowController extends Controller
         ]);
 
 
-        $email = $order->email;
-        // $email = "h180376n@hit.ac.zw";
+//        $email = $order->email;
+         $email = "h180376n@hit.ac.zw";
         $phone_number = $order->phone;
         $amount = floatval($order->price);
 
         $payment = $this->paynow->createPayment(
             $order->id,
-            $email,
+            $email
         );
-        
+
 
         $payment->add(
             env('APP_NAME'),
             $amount
         );
-        
+
 
         try {
             $response = $this->paynow->sendMobile(
@@ -109,7 +109,7 @@ class PaynowController extends Controller
                 ]);
             }
 
-            $order->poll_url = $response->pollUrl();  
+            $order->poll_url = $response->pollUrl();
             $order->save();
 
             // Return the response
@@ -122,11 +122,11 @@ class PaynowController extends Controller
             $newTransaction = json_decode($transaction->content(), true);
 
             // dd($newTransaction['transaction']['id']);
-            
+
             return view('paynow.index', ['newTransaction' => $newTransaction , 'phone_number' => $phone_number]);
-            
-        } 
-        
+
+        }
+
         catch (ConnectionException $e) {
             logger()->error("Failed to connect to Paynow\n" . $e->getTraceAsString());
         } catch (HashMismatchException $e) {
@@ -144,7 +144,7 @@ class PaynowController extends Controller
     }
 
     public function poll(Request $request)
-    {  
+    {
         $this->validate($request, [
             'transaction' => 'exists:orders,id'
         ]);
@@ -153,7 +153,7 @@ class PaynowController extends Controller
         $transaction = Order::findOrFail($request->input('transaction'));
         $member = StudentMember::where('email' ,  session('membership')['email'])->first();
         $user =  User::where('email' ,  session('membership')['email'])->first();
-        
+
 
         try {
             // Try to poll the transaction
@@ -178,14 +178,14 @@ class PaynowController extends Controller
             else{
                 $member->delete();
                 $user->delete();
-            Alert::error('Error Occured' , 'An error occured whilst processing the transaction');    
+            Alert::error('Error Occured' , 'An error occured whilst processing the transaction');
             return response()->json([
                 'status' => 'error',
                 'message' => 'An error occurred while polling transaction'
             ]);
            }
         }
-        catch (Exception $e) {            
+        catch (Exception $e) {
             logger()->error($e->getMessage() . "\t\t" . $e->getTraceAsString());
         }
     }

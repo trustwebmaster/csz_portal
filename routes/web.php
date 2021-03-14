@@ -26,7 +26,7 @@ Route::get('/poll' , 'PaynowController@poll')->name('poll');
 // {
 //      return $student->name;
 // });
-//route model binding 
+//route model binding
 
 
 Auth::routes();
@@ -52,6 +52,3 @@ Route::get('/add', function(){
     return view('admin.memberForm');
 });
 
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});

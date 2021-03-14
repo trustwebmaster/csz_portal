@@ -9,4 +9,7 @@ class Order extends Model
 { 
     protected $guarded = []; 
     
+    public function student(){
+        return $this->belongsTo('App\StudentMeber');
+    }
 }
