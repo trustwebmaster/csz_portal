@@ -17,11 +17,11 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
         if (Auth::user()->role == 'user') {
-            return redirect()->route('user');
+            return redirect()->route('member-dashboard');
         }
 
         if (Auth::user()->role == 'admin') {
-            return redirect()->route('admin');
+            return $next($request);
         }
     }
 }

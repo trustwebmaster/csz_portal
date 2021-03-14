@@ -3,22 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Members;
+use App\StudentMember;
 use Illuminate\Http\Request;
 use App\Repositories\MembersRepository;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MembersController extends Controller
 {
 
-// The Members repository instance.
 
 protected $members;
-
-public function __construct(MembersRepository $members)
-{
-    $this->middleware('auth');
-
-    $this->members = $members;
-}
 
     /**
      * Display a listing of the resource.
@@ -27,14 +22,56 @@ public function __construct(MembersRepository $members)
      */
     public function index()
     {
-        //List all Members
-        $data = [
-          'members' => $this->members->listMembers()
-        ];
-
-        return view('admin.list', $data);
+        return view('member.index');
     }
 
+    public function profile()
+    {
+         $email = Auth::user()->email;
+         $member = StudentMember::whereEmail($email)->first();
+         return view('member.member' , ['member' => $member]);
+    }
+
+    public function membership()
+    {
+        return view('member.membership');
+    }
+
+    public function editmember(Request $request){
+
+        if($request->has('contact')){
+            $member = StudentMember::where('id' , $request->id)
+                ->Update([
+                    "firstname" => $request->firstname,
+                    "surname" =>  $request->lastname,
+                    "number" => $request->phone_number,
+                    "email" => $request->email,
+                    "address" => $request->address
+                ]);
+            Alert::success('Contact Information' ,'Successfully Updated member details');
+            return back();
+        }
+        elseif($request->has('hobbies')){
+
+            $member = StudentMember::where('id' , $request->id)
+                ->Update([
+                    "current_year" => $request->current_year,
+                    "school_name" => $request->school_name,
+                    "interest_group" => $request->interest_group,
+                    "notes" => $request->notes
+                ]);
+            Alert::success('Member Education' ,'Successfully Updated member details');
+            return back();
+        }
+        else{
+            $member = StudentMember::where('id' , $request->id)
+                ->Update([
+                    "chapter" => $request->chapter,
+                ]);
+            Alert::success('Member Chapter' ,'Successfully Updated member details');
+            return back();
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
