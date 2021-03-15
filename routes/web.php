@@ -34,12 +34,10 @@ Route::group(['middleware' => 'auth'] , function () {
 });
 
 Route::group(['middleware' => 'auth'] , function () {
-    Route::group(['middleware' =>  'user'] , function () {
-
+    Route::group(['middleware' =>  'admin'] , function () {
+     Route::get('/admin' , 'AdminController@index')->name('admin');
     });
 });
-
-
 
 
 Route::post('member_verify', 'ClientController@member')->name('email-verification');
@@ -50,7 +48,4 @@ Route::get('member_verified_professional', 'ClientController@professional');
 Route::get('verification' , 'ClientController@verify')->name('custom-verify');
 
 
-Route::get('/add', function(){
-    return view('admin.memberForm');
-});
 
