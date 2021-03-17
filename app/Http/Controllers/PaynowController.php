@@ -5,6 +5,7 @@ use App\StudentMember;
 use App\User;
 use Exception;
 
+use Illuminate\Support\Facades\DB;
 use Paynow\Payments\Paynow;
 use Paynow\Http\ConnectionException;
 use Paynow\Payments\HashMismatchException;
@@ -35,46 +36,56 @@ class PaynowController extends Controller
 
     public function initialise(Request $request)
     {
-        $path = '/public/Student Documents';
-        $filename1 = 'Student-'.\request('surname'). '-' .\request()->file('national_id')->getClientOriginalExtension();
-        request()->file('national_id')->storeAs($path ,$filename1);
-        $filename2 = 'Member'.\request('surname'). '-' .\request()->file('school_id')->getClientOriginalExtension();
-        request()->file('school_id')->storeAs($path ,$filename2);
-        $national_id = Storage::disk('local')->getAdapter()->applyPathPrefix($path.'/'.$filename1);
-        $school_id = Storage::disk('local')->getAdapter()->applyPathPrefix($path.'/'.$filename2);
+        DB::beginTransaction();
+
+        try {
+            $path = '/public/Student Documents';
+            $filename1 = 'Student-'.\request('surname'). '-' .\request()->file('national_id')->getClientOriginalExtension();
+            request()->file('national_id')->storeAs($path ,$filename1);
+            $filename2 = 'Member'.\request('surname'). '-' .\request()->file('school_id')->getClientOriginalExtension();
+            request()->file('school_id')->storeAs($path ,$filename2);
+            $national_id = Storage::disk('local')->getAdapter()->applyPathPrefix($path.'/'.$filename1);
+            $school_id = Storage::disk('local')->getAdapter()->applyPathPrefix($path.'/'.$filename2);
 
 
-        $member = StudentMember::Create([
-          'chapter'  => $request->chapter,
-          'email' => session('membership')['email'],
-          'interest_group' => $request->interest_group,
-          'firstname' => $request->name,
-          'surname' => $request->surname,
-          'number' => $request->phonenumber,
-          'password' =>Hash::make($request->password),
-          'school_name' => $request->current_school,
-          'date_of_birth' => $request->date_of_birth,
-          'address' => $request->address,
-          'current_year' => $request->current_year,
-          'notes' => $request->notes,
-          'school_id' => $school_id,
-          'national_id' => $national_id,
-        ]);
+            $member = StudentMember::Create([
+                'chapter'  => $request->chapter,
+                'email' => session('membership')['email'],
+                'interest_group' => $request->interest_group,
+                'firstname' => $request->name,
+                'surname' => $request->surname,
+                'number' => $request->phonenumber,
+                'password' =>Hash::make($request->password),
+                'school_name' => $request->current_school,
+                'date_of_birth' => $request->date_of_birth,
+                'address' => $request->address,
+                'current_year' => $request->current_year,
+                'notes' => $request->notes,
+                'school_id' => $school_id,
+                'national_id' => $national_id,
+            ]);
 
 
-        $user = User::UpdateOrCreate([
-            'name' => $member->firstname . $member->surname,
-            'email' => $member->email,
-            'password' =>$member->password,
-        ]);
+            $user = User::UpdateOrCreate([
+                'name' => $member->firstname . $member->surname,
+                'email' => $member->email,
+                'password' =>$member->password,
+            ]);
 
 
-        $order =  Order::Create([
-            'price' => $request->amount,
-            'email' => session('membership')['email'],
-            'phone' => $request->ecocash_number,
-        ]);
+            $order =  Order::Create([
+                'price' => $request->amount,
+                'email' => session('membership')['email'],
+                'phone' => $request->ecocash_number,
+            ]);
+        }
+        catch (\Exception  $e  ){
 
+
+            dd($e);
+            DB::rollBack();
+        }
+        DB::commit();
 
 //        $email = $order->email;
          $email = "h180376n@hit.ac.zw";
@@ -85,7 +96,6 @@ class PaynowController extends Controller
             $order->id,
             $email
         );
-
 
         $payment->add(
             env('APP_NAME'),
