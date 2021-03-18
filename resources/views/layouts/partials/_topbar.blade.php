@@ -5,19 +5,19 @@
             <div class="navbar-brand-box">
                 <a href="#" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="assets/images/csz.png" alt="" height="22">
+                                    <img src="{{ asset('assets/images/csz.png') }}" alt="" height="22">
                                 </span>
                     <span class="logo-lg">
-                                    <img src="assets/images/csz.png" alt="" height="40">
+                                    <img src="{{ asset('assets/images/csz.png') }}" alt="" height="40">
                                 </span>
                 </a>
 
                 <a href="#" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="assets/images/csz_light.png" alt="" height="22">
+                                    <img src="{{ asset('assets/images/csz_light.png') }}" alt="" height="22">
                                 </span>
                     <span class="logo-lg">
-                                    <img src="assets/images/csz_light.png" alt="" height="40">
+                                    <img src="{{ asset('assets/images/csz_light.png') }}" alt="" height="40">
                                 </span>
                 </a>
             </div>
@@ -102,7 +102,7 @@
                         </a>
                         <a href="#" class="text-reset notification-item">
                             <div class="media">
-                                <img src="assets/images/users/avatar-3.jpg"
+                                <img src="{{ asset('assets/images/users/avatar-3.jpg') }}"
                                      class="mr-3 rounded-circle avatar-xs" alt="user-pic">
                                 <div class="media-body">
                                     <h6 class="mt-0 mb-1">James Lemire</h6>
@@ -132,7 +132,7 @@
 
                         <a href="#" class="text-reset notification-item">
                             <div class="media">
-                                <img src="assets/images/users/avatar-4.jpg"
+                                <img src="{{ asset('assets/images/users/avatar-4.jpg') }}"
                                      class="mr-3 rounded-circle avatar-xs" alt="user-pic">
                                 <div class="media-body">
                                     <h6 class="mt-0 mb-1">Salena Layfield</h6>
@@ -155,7 +155,7 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-3.jpg"
+                    <img class="rounded-circle header-profile-user" src="{{ asset('assets/images/users/avatar-3.jpg') }}"
                          alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ml-1 text-capitalize">{{ Auth::user()->name }}</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>

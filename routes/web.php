@@ -37,9 +37,8 @@ Route::group(['middleware' => 'auth'] , function () {
 Route::group(['middleware' => 'auth'] , function () {
     Route::group(['middleware' =>  'admin'] , function () {
      Route::get('/admin' , 'AdminController@index')->name('admin');
-     Route::get('/pending-approvals' , 'AdminController@members')->name('p-members');
-     Route::get('/test' , 'AdminController@test')->name('test');
-
+     Route::get('/admin/pending-approvals' , 'AdminController@pendingApprovals')->name('admin.pending-approvals');
+     Route::get('/admin/pending-approvals/show' , 'AdminController@pendingApprovalsShow')->name('admin.pending-approvals.show');
     });
 });
 
