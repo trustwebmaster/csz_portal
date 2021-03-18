@@ -42,6 +42,7 @@
         </div>
     </div>
 
+    @foreach($users as $user)
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -52,7 +53,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>I will not close if you click outside me. Don't even try to press escape key.</p>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <select name="user" id="user" class="form-control" required>
+                                    <option value="approve">Approve</option>
+                                    <option value="decline">Decline</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -61,5 +71,6 @@
             </div>
         </div>
     </div>
+    @endforeach
 @endsection
 
