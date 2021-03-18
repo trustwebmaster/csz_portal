@@ -9,7 +9,7 @@
                 <li class="menu-title" key="t-menu">Menu</li>
 
                 <li>
-                    <a href="{{ route('test') }}" class="waves-effect">
+                    <a href="{{ route('admin') }}" class="waves-effect">
                         <i class="bx bx-home-circle"></i>
                         <span>Dashboard</span>
                     </a>

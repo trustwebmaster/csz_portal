@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Controllers;
-use App\Models\Order;
+use App\Order;
 use App\StudentMember;
 use App\User;
 use Exception;

@@ -9,5 +9,13 @@
 
 <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
 
+<!-- twitter-bootstrap-wizard js -->
+<script src="{{ asset('assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}"></script>
+
+<script src="{{ asset('assets/libs/twitter-bootstrap-wizard/prettify.js') }}"></script>
+
+<!-- form wizard init -->
+<script src="{{ asset('assets/js/pages/form-wizard.init.js') }}"></script>
+
 <!-- App js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
