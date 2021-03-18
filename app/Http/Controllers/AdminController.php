@@ -22,6 +22,10 @@ class AdminController extends Controller
         return view('admin.members-approval' , ['users' => $users]);
     }
 
+    public function test(){
+        return view('admin.test');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
