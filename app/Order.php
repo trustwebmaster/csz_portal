@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
-{ 
-    protected $guarded = []; 
-    
+{
+    protected $guarded = [];
+
     public function student(){
-        return $this->belongsTo('App\StudentMeber');
+        return $this->belongsTo('App\StudentMember');
     }
 }

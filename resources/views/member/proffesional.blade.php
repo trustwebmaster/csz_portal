@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <!-- Mirrored from coderthemes.com/adminto/layouts/vertical/form-wizard.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Dec 2020 09:17:28 GMT -->
 <head>
         <meta charset="utf-8" />
@@ -38,7 +38,7 @@
                           <div class="card-body">
                               <h4 class="header-title mb-3">Professional  Membership Registration</h4>
                               <form action="{{ route('initialise') }}" method="POST" enctype="multipart/form-data">
-                             {{ csrf_field() }} 
+                             {{ csrf_field() }}
                                   <div id="progressbarwizard">
                                       <ul class="nav nav-pills  nav-justified form-wizard-header mb-1">
                                           <li class="nav-item">
@@ -60,12 +60,12 @@
                                               </a>
                                           </li>
                                       </ul>
-                                  
-                                      <div class="tab-content border-0 mb-0">                
+
+                                      <div class="tab-content border-0 mb-0">
                                           <div id="bar" class="progress mb-3 mt-0" style="height: 7px;">
                                               <div class="bar progress-bar progress-bar-striped progress-bar-animated bg-danger"></div>
                                           </div>
-                                  
+
                                           <div class="tab-pane" id="account-2">
                                               <div class="row">
                                                   <div class="col-12">
@@ -115,11 +115,11 @@
                                                           <div class="col-md-9">
                                                               <input type="password" id="password1" name="password1" class="form-control"  required>
                                                           </div>
-                                                      </div>      
+                                                      </div>
                                                   </div> <!-- end col -->
                                               </div> <!-- end row -->
                                           </div>
-              
+
                                           <div class="tab-pane" id="profile-tab-2">
                                               <div class="row">
                                                   <div class="col-12">
@@ -162,7 +162,7 @@
                                                   </div> <!-- end col -->
                                               </div> <!-- end row -->
                                           </div>
-              
+
                                           <div class="tab-pane" id="finish-2">
                                               <div class="row">
                                                   <div class="col-12">
@@ -178,7 +178,7 @@
                                                   </div> <!-- end col -->
                                               </div> <!-- end row -->
                                           </div>
-              
+
                                           <ul class="list-inline mb-0 wizard">
                                               <li class="previous list-inline-item">
                                                   <a href="javascript: void(0);" class="btn btn-dark">Previous</a>
@@ -191,11 +191,11 @@
                                            <button class="btn btn-dark" type="submit" >Submit</button> <!-- tab-content -->
                                   </div> <!-- end #progressbarwizard-->
                               </form>
-              
+
                           </div> <!-- end card-body -->
                       </div> <!-- end card-->
                   </div> <!-- end col -->
-                </div> 
+                </div>
               </div>
         </div>
     </div>

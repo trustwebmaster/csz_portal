@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
-use App\Models\Order;
+use App\Http\Requests\MemberReqeust;
+use App\Order;
 use App\StudentMember;
 use App\User;
 use Exception;
@@ -34,29 +35,33 @@ class PaynowController extends Controller
         );
     }
 
-    public function initialise(Request $request)
+    public function initialise(MemberReqeust $request)
     {
         DB::beginTransaction();
 
         try {
-            $path = '/public/Student Documents';
-            $filename1 = 'Student-'.\request('surname'). '-' .\request()->file('national_id')->getClientOriginalExtension();
-            request()->file('national_id')->storeAs($path ,$filename1);
-            $filename2 = 'Member'.\request('surname'). '-' .\request()->file('school_id')->getClientOriginalExtension();
-            request()->file('school_id')->storeAs($path ,$filename2);
-            $national_id = Storage::disk('local')->getAdapter()->applyPathPrefix($path.'/'.$filename1);
-            $school_id = Storage::disk('local')->getAdapter()->applyPathPrefix($path.'/'.$filename2);
+//            $path = '/public/Student Documents';
+//            $filename1 = 'Student-'.\request('surname'). '-' .\request()->file('national_id')->getClientOriginalExtension();
+//            request()->file('national_id')->storeAs($path ,$filename1);
+//            $filename2 = 'Member'.\request('surname'). '-' .\request()->file('school_id')->getClientOriginalExtension();
+//            request()->file('school_id')->storeAs($path ,$filename2);
+//            $national_id = Storage::disk('local')->getAdapter()->applyPathPrefix($path.'/'.$filename1);
+//            $school_id = Storage::disk('local')->getAdapter()->applyPathPrefix($path.'/'.$filename2);
 
+            $national = $request->file('national_id');
+            $school = $request->file('school_id');
+            $national_id = Storage::disk('public')->put('Members' , $national);
+            $school_id = Storage::disk('public')->put('Members' , $school);
 
             $member = StudentMember::Create([
                 'chapter'  => $request->chapter,
                 'email' => session('membership')['email'],
                 'interest_group' => $request->interest_group,
-                'firstname' => $request->name,
+                'firstname' => $request->firstname,
                 'surname' => $request->surname,
-                'number' => $request->phonenumber,
+                'number' => $request->number,
                 'password' =>Hash::make($request->password),
-                'school_name' => $request->current_school,
+                'school_name' => $request->school_name,
                 'date_of_birth' => $request->date_of_birth,
                 'address' => $request->address,
                 'current_year' => $request->current_year,
@@ -81,7 +86,6 @@ class PaynowController extends Controller
         }
         catch (\Exception  $e  ){
 
-
             dd($e);
             DB::rollBack();
         }
@@ -101,7 +105,6 @@ class PaynowController extends Controller
             env('APP_NAME'),
             $amount
         );
-
 
         try {
             $response = $this->paynow->sendMobile(

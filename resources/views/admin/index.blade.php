@@ -1,9 +1,5 @@
-@extends('layout.layout')
+@extends('layouts.master')
 
-@section('navigationbar')
-    @include('layout.admin-layout')
+@section('content')
+
 @endsection
-
-@section('contents')
-@endsection
-
