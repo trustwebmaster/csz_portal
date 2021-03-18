@@ -85,7 +85,7 @@
                                                 <div class="form-group row mb-3">
                                                     <label class="col-md-3 col-form-label"> First Name</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" name="name" class="form-control" required>
+                                                        <input type="text" name="firstname" class="form-control" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row mb-3">
@@ -116,13 +116,13 @@
                                                 <div class="form-group row mb-3">
                                                     <label class="col-md-3 col-form-label" for="name1"> Mobile Number</label>
                                                     <div class="col-md-9">
-                                                        <input type="number"  name="phonenumber" class="form-control" required>
+                                                        <input type="number"  name="number" class="form-control" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row mb-3">
                                                     <label class="col-md-3 col-form-label">Current School</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" id="school" name="current_school" class="form-control">
+                                                        <input type="text" id="school" name="school_name" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row mb-3">
