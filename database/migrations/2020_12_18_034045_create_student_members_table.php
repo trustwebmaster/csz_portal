@@ -28,6 +28,7 @@ class CreateStudentMembersTable extends Migration
             $table->string('notes');
             $table->string('school_id');
             $table->string('national_id');
+            $table->string('image');
             $table->timestamps();
         });
     }

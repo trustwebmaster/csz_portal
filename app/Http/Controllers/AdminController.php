@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\CompanyMember;
+use App\ProfessionalMember;
+use App\StudentMember;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,13 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $students = StudentMember::all()->count();
+        $company = CompanyMember::all()->count();
+        $professional = ProfessionalMember::all()->count();
+
+
+        return view('admin.index' ,
+            ['students' => $students , 'company' => $company , 'professional' => $professional] );
     }
 
     public function members(){
@@ -35,9 +44,13 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function approval(StudentMember $member)
     {
-        //
+        $member->update([
+            'status' => 'approved'
+        ]);
+
+        return redirect()->route('admin.pending-approvals.show');
     }
 
     /**

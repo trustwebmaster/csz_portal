@@ -22,7 +22,6 @@ Route::get('/', function(){
 Route::post('/paynow' , 'PaynowController@initialise')->name('initialise');
 Route::get('/poll' , 'PaynowController@poll')->name('poll');
 
-
 Auth::routes();
 
 Route::group(['middleware' => 'auth'] , function () {
@@ -39,6 +38,7 @@ Route::group(['middleware' => 'auth'] , function () {
      Route::get('/admin' , 'AdminController@index')->name('admin');
      Route::get('/admin/pending-approvals' , 'AdminController@pendingApprovals')->name('admin.pending-approvals');
      Route::get('/admin/pending-approvals/show' , 'AdminController@pendingApprovalsShow')->name('admin.pending-approvals.show');
+     Route::post('/member-approval/{member}' , 'AdminController@approval')->name('member-approval');
     });
 });
 
