@@ -2,142 +2,190 @@
 
 @section('content')
 
-   <div class="container-fluid">
-       <div class="row">
-           <div class="col-12">
-               <div class="page-title-box d-flex align-items-center justify-content-between">
-                   <h4 class="mb-0 font-size-12">Approval Overview</h4>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0 font-size-12">Approval Overview</h4>
 
-                   <div class="page-title-right">
-                       <ol class="breadcrumb m-0">
-                           <li class="breadcrumb-item"><a href="{{ route('admin.pending-approvals') }}">Pending Approvals</a></li>
-                           <li class="breadcrumb-item active">Approval Overview</li>
-                       </ol>
-                   </div>
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="{{ route('admin.pending-approvals') }}">Pending
+                                    Approvals</a></li>
+                            <li class="breadcrumb-item active">Approval Overview</li>
+                        </ol>
+                    </div>
 
-               </div>
-           </div>
-       </div>
+                </div>
+            </div>
+        </div>
 
 
-       <div class="row">
-           <div class="col-lg-8">
-               <div class="card">
-                   <div class="card-body">
-                       <div class="media">
-                           <img src="{{ asset('assets/images/companies/img-1.png') }}" alt="" class="avatar-sm mr-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="media">
+                            <a class="image-popup-no-margins" href="{{ asset('assets/images/users/avatar-3.jpg') }}">
+                                <img class="avatar-sm rounded-circle mr-4" alt="" src="{{ asset('assets/images/users/avatar-3.jpg') }}" width="75">
+                            </a>
 
-                           <div class="media-body overflow-hidden">
-                               <h5 class="text-truncate font-size-15">Skote Dashboard UI</h5>
-                               <p class="text-muted">Separate existence is a myth. For science, music, sport, etc.</p>
-                           </div>
-                       </div>
+                            <div class="media-body overflow-hidden">
+                                <h5 class="text-truncate font-size-15">Tiger Nixon</h5>
+                            </div>
+                            <div>
+                                <button type="button"
+                                        class="btn btn-success btn-xs waves-effect waves-light">Approve
+                                </button>
+                                |
+                                <button type="button"
+                                        class="btn btn-danger btn-xs waves-effect waves-light">Decline
+                                </button>
+                            </div>
+                        </div>
 
-                       <h5 class="font-size-15 mt-4">Project Details :</h5>
+                        <h5 class="font-size-15 mt-4">Overview</h5>
 
-                       <p class="text-muted">To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc,</p>
+                        <p class="text-muted">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum debitis dicta, dolor ducimus
+                            earum error eveniet incidunt nobis perferendis quas, qui temporibus tenetur unde, vitae
+                            voluptates! Consequatur deleniti earum id pariatur quo quos veritatis. Adipisci delectus
+                            dolore error fugiat laboriosam officia ratione similique vitae! At deleniti earum eum facere
+                            sed?
+                        </p>
 
-                       <div class="text-muted mt-4">
-                           <p><i class="mdi mdi-chevron-right text-primary mr-1"></i> To achieve this, it would be necessary</p>
-                           <p><i class="mdi mdi-chevron-right text-primary mr-1"></i> Separate existence is a myth.</p>
-                           <p><i class="mdi mdi-chevron-right text-primary mr-1"></i> If several languages coalesce</p>
-                       </div>
+                        <div class="row task-dates">
+                            <div class="col-sm-4 col-6">
+                                <div class="mt-4">
+                                    <h5 class="font-size-14"><i class="bx bx-calendar mr-1 text-primary"></i> Registration Date
+                                    </h5>
+                                    <p class="text-muted mb-0">08 Sept, 2019</p>
+                                </div>
+                            </div>
 
-                       <div class="row task-dates">
-                           <div class="col-sm-4 col-6">
-                               <div class="mt-4">
-                                   <h5 class="font-size-14"><i class="bx bx-calendar mr-1 text-primary"></i> Start Date</h5>
-                                   <p class="text-muted mb-0">08 Sept, 2019</p>
-                               </div>
-                           </div>
+                            <div class="col-sm-2"></div>
 
-                           <div class="col-sm-4 col-6">
-                               <div class="mt-4">
-                                   <h5 class="font-size-14"><i class="bx bx-calendar-check mr-1 text-primary"></i> Due Date</h5>
-                                   <p class="text-muted mb-0">12 Oct, 2019</p>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-           <!-- end col -->
+                            <div class="col-sm-4 col-6">
+                                <div class="mt-4">
+                                    <h5 class="font-size-14"><i class="bx bxs-city mr-1 text-primary"></i> Interest Groups</h5>
+                                    <span class="badge badge-warning">Coding</span>,
+                                    <span class="badge badge-warning">Fishing</span>,
+                                    <span class="badge badge-warning">Singing</span>
+                                </div>
+                            </div>
+                        </div>
 
-           <div class="col-lg-4">
-               <div class="card">
-                   <div class="card-body">
-                       <h4 class="card-title mb-4">Team Members</h4>
+                        <div class="row task-dates mt-4">
+                            <div class="col-sm-4 m-0">
+                                <div class="mt-4">
+                                    <h5 class="font-size-14"><i class="bx bx-id-card mr-1 text-primary"></i>National ID</h5>
+                                    <table class="table table-borderless m-0">
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="avatar-sm">
+                                                    <span class="avatar-title rounded-circle bg-soft-primary text-primary font-size-24">
+                                                        <i class="bx bxs-file-doc"></i>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h5 class="font-size-12 mb-1"><a href="#" class="text-dark">Skote Landing.Zip</a></h5>
+                                                <small>Size : 3.25 MB</small>
+                                            </td>
+                                            <td>
+                                                <div class="">
+                                                    <a href="#" class="text-dark"><i class="bx bx-download h3 m-0"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
-                       <div class="table-responsive">
-                           <table class="table table-centered table-nowrap">
-                               <tbody>
-                               <tr>
-                                   <td style="width: 50px;"><img src="{{ asset('assets/images/users/avatar-2.jpg') }}" class="rounded-circle avatar-xs" alt=""></td>
-                                   <td><h5 class="font-size-14 m-0"><a href="#" class="text-dark">Daniel Canales</a></h5></td>
-                                   <td>
-                                       <div>
-                                           <a href="#" class="badge badge-primary font-size-11">Frontend</a>
-                                           <a href="#" class="badge badge-primary font-size-11">UI</a>
-                                       </div>
-                                   </td>
-                               </tr>
-                               <tr>
-                                   <td><img src="{{ asset('assets/images/users/avatar-1.jpg') }}" class="rounded-circle avatar-xs" alt=""></td>
-                                   <td><h5 class="font-size-14 m-0"><a href="#" class="text-dark">Jennifer Walker</a></h5></td>
-                                   <td>
-                                       <div>
-                                           <a href="#" class="badge badge-primary font-size-11">UI / UX</a>
-                                       </div>
-                                   </td>
-                               </tr>
-                               <tr>
-                                   <td>
-                                       <div class="avatar-xs">
-                                                                <span class="avatar-title rounded-circle bg-soft-primary text-primary font-size-16">
-                                                                    C
-                                                                </span>
-                                       </div>
-                                   </td>
-                                   <td><h5 class="font-size-14 m-0"><a href="#" class="text-dark">Carl Mackay</a></h5></td>
-                                   <td>
-                                       <div>
-                                           <a href="#" class="badge badge-primary font-size-11">Backend</a>
-                                       </div>
-                                   </td>
-                               </tr>
-                               <tr>
-                                   <td><img src="{{ asset('assets/images/users/avatar-4.jpg') }}" class="rounded-circle avatar-xs" alt=""></td>
-                                   <td><h5 class="font-size-14 m-0"><a href="#" class="text-dark">Janice Cole</a></h5></td>
-                                   <td>
-                                       <div>
-                                           <a href="#" class="badge badge-primary font-size-11">Frontend</a>
-                                           <a href="#" class="badge badge-primary font-size-11">UI</a>
-                                       </div>
-                                   </td>
-                               </tr>
-                               <tr>
-                                   <td>
-                                       <div class="avatar-xs">
-                                                                <span class="avatar-title rounded-circle bg-soft-primary text-primary font-size-16">
-                                                                    T
-                                                                </span>
-                                       </div>
-                                   </td>
-                                   <td><h5 class="font-size-14 m-0"><a href="#" class="text-dark">Tony Brafford</a></h5></td>
-                                   <td>
-                                       <div>
-                                           <a href="#" class="badge badge-primary font-size-11">Backend</a>
-                                       </div>
-                                   </td>
-                               </tr>
-                               </tbody>
-                           </table>
-                       </div>
-                   </div>
-               </div>
-           </div>
-           <!-- end col -->
-       </div>
-   </div>
+                            <div class="col-sm-2"></div>
+
+                            <div class="col-sm-4 m-0">
+                                <div class="mt-4">
+                                    <h5 class="font-size-14"><i class="bx bx-id-card mr-1 text-primary"></i>School ID</h5>
+                                    <table class="table table-borderless m-0">
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="avatar-sm">
+                                                    <span class="avatar-title rounded-circle bg-soft-primary text-primary font-size-24">
+                                                        <i class="bx bxs-file-doc"></i>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h5 class="font-size-12 mb-1"><a href="#" class="text-dark">Skote Landing.Zip</a></h5>
+                                                <small>Size : 3.25 MB</small>
+                                            </td>
+                                            <td>
+                                                <div class="">
+                                                    <a href="#" class="text-dark"><i class="bx bx-download h3 m-0"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Personal Information</h4>
+                        <div class="table-responsive">
+                            <table class="table table-nowrap mb-0">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Full Name :</th>
+                                    <td>Tiger Nixon</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Mobile :</th>
+                                    <td>(123) 123 1234</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">E-mail :</th>
+                                    <td class="text-wrap">tigern@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Address :</th>
+                                    <td class="text-wrap">California, United States</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">School Name :</th>
+                                    <td class="text-wrap">University of Zimbabwe</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Date of Birth :</th>
+                                    <td class="text-wrap">13 May 1999</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Chapter :</th>
+                                    <td class="text-wrap">Harare</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Current Year :</th>
+                                    <td class="text-wrap">Third Year</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+        </div>
+    </div>
 
 @endsection
