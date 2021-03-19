@@ -37,5 +37,11 @@
 <!-- Datatable init js -->
 <script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
 
+<!-- Magnific Popup-->
+<script src="{{ asset('assets/libs/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+
+<!-- lightbox init js-->
+<script src="{{ asset('assets/js/pages/lightbox.init.js') }}"></script>
+
 <!-- App js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
