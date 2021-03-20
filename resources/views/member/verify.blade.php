@@ -76,7 +76,10 @@
                                                 <div class="form-group row mb-3">
                                                     <label class="col-md-3 col-form-label" for="userName1">Interest Groups</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" class="form-control"  name="interest_group" data-role="tagsinput" required>
+                                                        <select type="text" class="form-control"  name="interest_group" required>
+                                                            <option value="Coding">Coding</option>
+                                                            <option value="Fishing">Fishing</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row mb-3">

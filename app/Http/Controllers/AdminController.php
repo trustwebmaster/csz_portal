@@ -22,8 +22,12 @@ class AdminController extends Controller
         return view('admin.members-approval' , ['users' => $users]);
     }
 
-    public function test(){
-        return view('admin.test');
+    public function pendingApprovalsShow(){
+        return view('admin.pending-approvals-show');
+    }
+
+    public function pendingApprovals(){
+        return view('admin.pending-approvals');
     }
 
     /**
