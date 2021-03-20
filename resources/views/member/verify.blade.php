@@ -132,6 +132,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label">Profile Pic</label>
+                                                    <div class="col-md-9">
+                                                        <input type="file" name="profile" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
                                                     <label class="col-md-3 col-form-label">School ID</label>
                                                     <div class="col-md-9">
                                                         <input type="file" name="school_id" class="form-control">

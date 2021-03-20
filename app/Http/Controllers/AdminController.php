@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\CompanyMember;
+use App\ProfessionalMember;
+use App\StudentMember;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -14,7 +18,13 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $students = StudentMember::all()->count();
+        $company = CompanyMember::all()->count();
+        $professional = ProfessionalMember::all()->count();
+
+
+        return view('admin.index' ,
+            ['students' => $students , 'company' => $company , 'professional' => $professional] );
     }
 
     public function members(){
@@ -22,12 +32,14 @@ class AdminController extends Controller
         return view('admin.members-approval' , ['users' => $users]);
     }
 
-    public function pendingApprovalsShow(){
-        return view('admin.pending-approvals-show');
+    public function pendingApprovalsShow($user){
+         $member = StudentMember::where('user_id' , $user)->first();
+        return view('admin.pending-approvals-show' , ['member' => $member]);
     }
 
     public function pendingApprovals(){
-        return view('admin.pending-approvals');
+        $users = User::where('status' , 'pending')->get();
+        return view('admin.pending-approvals' , ['users' => $users]);
     }
 
     /**
@@ -35,9 +47,13 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function approval(StudentMember $member)
     {
-        //
+        $member->update([
+            'status' => 'approved'
+        ]);
+
+        return redirect()->route('admin.pending-approvals.show');
     }
 
     /**
@@ -46,9 +62,30 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function nationalID(StudentMember $member)
     {
-        //
+        return Storage::disk('public')->download($member->national_id);
+    }
+
+    public function schoolID(StudentMember $member)
+    {
+        return Storage::disk('public')->download($member->school_id);
+    }
+
+    public function approve_member(User $member){
+      $test =  $member->Update([
+           'status' => 'Approved'
+        ]);
+      return $test;
+
+        return redirect()->route('admin.pending-approvals');
+    }
+
+    public function decline_member(User $member){
+        $member->update([
+           'status' => 'Decline'
+        ]);
+        return redirect()->route('admin.pending-approvals');
     }
 
     /**

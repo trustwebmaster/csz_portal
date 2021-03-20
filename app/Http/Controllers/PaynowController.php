@@ -37,15 +37,21 @@ class PaynowController extends Controller
 
     public function initialise(MemberReqeust $request)
     {
-        DB::beginTransaction();
-
         try {
+            DB::beginTransaction();
 
             $national = $request->file('national_id');
+            $profile =$request->file('profile');
             $school = $request->file('school_id');
-            $profile = $request->file('')
             $national_id = Storage::disk('public')->put('Members' , $national);
             $school_id = Storage::disk('public')->put('Members' , $school);
+            $image = Storage::disk('public')->put('Members' , $profile);
+
+            $user = User::UpdateOrCreate([
+                'name' => $request->firstname . ' '.  $request->surname,
+                'email' => session('membership')['email'],
+                'password' =>Hash::make($request->password),
+            ]);
 
             $member = StudentMember::Create([
                 'chapter'  => $request->chapter,
@@ -62,27 +68,25 @@ class PaynowController extends Controller
                 'current_year' => $request->current_year,
                 'notes' => $request->notes,
                 'school_id' => $school_id,
-                'national_id' => $national_id
+                'national_id' => $national_id,
+                'image' => $image
             ]);
 
 
-              $user = User::UpdateOrCreate([
-                  'name' => $member->firstname . $member->surname,
-                  'email' => $member->email,
-                  'password' =>$member->password,
-              ]);
-
-
-            $order =  Order::Create([
+            $order = Order::Create([
+                'user_id' => $user->id,
                 'price' => $request->amount,
                 'email' => session('membership')['email'],
                 'phone' => $request->ecocash_number,
             ]);
+
         }
         catch (\Exception  $e  ){
-
             dd($e);
             DB::rollBack();
+            $user->delete();
+            $order->delete();
+            $member->delete();
         }
         DB::commit();
 

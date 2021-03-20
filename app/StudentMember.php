@@ -20,7 +20,7 @@ class StudentMember extends Model
 
      }
 
-      public function getNameAttribute()
+      public function name()
      {
           return $this->attributes['firstname'].
           ' ' . $this->attributes['surname'];

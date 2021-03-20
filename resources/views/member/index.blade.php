@@ -6,7 +6,16 @@
 
 @section('contents')
 <div class="container-fluid">
-
+    @if(Auth::user()->status = 'pending')
+        <div class="card-body">
+            <blockquote class="card-bodyquote mb-0">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
+                    erat a ante.</p>
+                <footer class="blockquote-footer text-white-50">Someone famous in <cite title="Source Title">Source Title</cite>
+                </footer>
+            </blockquote>
+        </div>
+   @endif
     <div class="row">
         <div class="col-xl-3 col-md-6">
             <div class="card-box">
@@ -32,7 +41,7 @@
 
         <div class="col-xl-3 col-md-6">
             <div class="card-box">
-               
+
                 <h4 class="header-title mt-0 mb-4">My Profile</h4>
 
                 <div class="widget-chart-1">

@@ -26,32 +26,28 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="media">
-                            <a class="image-popup-no-margins" href="{{ asset('assets/images/users/avatar-3.jpg') }}">
-                                <img class="avatar-sm rounded-circle mr-4" alt="" src="{{ asset('assets/images/users/avatar-3.jpg') }}" width="75">
+                            <a class="image-popup-no-margins" href="{{ asset( 'storage/'.$member->image ) }}">
+                                <img class="avatar-sm rounded-circle mr-4" alt="" src="{{ asset( 'storage/'.$member->image  ) }}" width="75">
                             </a>
 
                             <div class="media-body overflow-hidden">
-                                <h5 class="text-truncate font-size-15">Tiger Nixon</h5>
+                                <h5 class="text-truncate font-size-15">{{ $member->name() }}</h5>
                             </div>
                             <div>
-                                <button type="button"
+                                <a type="button" href="{{ route('accept-member' , ['member' => $member->user_id]) }}"
                                         class="btn btn-success btn-xs waves-effect waves-light">Approve
-                                </button>
+                                </a>
                                 |
-                                <button type="button"
+                                <a type="button" href="{{ route('decline-member' , ['member' => $member->user_id]) }}"
                                         class="btn btn-danger btn-xs waves-effect waves-light">Decline
-                                </button>
+                                </a>
                             </div>
                         </div>
 
-                        <h5 class="font-size-15 mt-4">Overview</h5>
+                        <h5 class="font-size-15 mt-4">Reason for Joining CSZ</h5>
 
                         <p class="text-muted">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum debitis dicta, dolor ducimus
-                            earum error eveniet incidunt nobis perferendis quas, qui temporibus tenetur unde, vitae
-                            voluptates! Consequatur deleniti earum id pariatur quo quos veritatis. Adipisci delectus
-                            dolore error fugiat laboriosam officia ratione similique vitae! At deleniti earum eum facere
-                            sed?
+                      {{ $member->notes }}
                         </p>
 
                         <div class="row task-dates">
@@ -59,7 +55,7 @@
                                 <div class="mt-4">
                                     <h5 class="font-size-14"><i class="bx bx-calendar mr-1 text-primary"></i> Registration Date
                                     </h5>
-                                    <p class="text-muted mb-0">08 Sept, 2019</p>
+                                    <p class="text-muted mb-0">{{ $member->created_at->format('d-m-Y') }}</p>
                                 </div>
                             </div>
 
@@ -68,9 +64,7 @@
                             <div class="col-sm-4 col-6">
                                 <div class="mt-4">
                                     <h5 class="font-size-14"><i class="bx bxs-city mr-1 text-primary"></i> Interest Groups</h5>
-                                    <span class="badge badge-warning">Coding</span>,
-                                    <span class="badge badge-warning">Fishing</span>,
-                                    <span class="badge badge-warning">Singing</span>
+                                    <span class="badge badge-warning">{{ $member->interest_group }}</span>
                                 </div>
                             </div>
                         </div>
@@ -90,12 +84,12 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <h5 class="font-size-12 mb-1"><a href="#" class="text-dark">Skote Landing.Zip</a></h5>
-                                                <small>Size : 3.25 MB</small>
+                                                <h5 class="font-size-12 mb-1"><a href="{{ route('member-national' , ['member' => $member->id]) }}" class="text-dark">Download</a></h5>
+                                                <small>Size : KB</small>
                                             </td>
                                             <td>
                                                 <div class="">
-                                                    <a href="#" class="text-dark"><i class="bx bx-download h3 m-0"></i></a>
+                                                    <a href="{{ route('member-national' , ['member' => $member->id]) }}" class="text-dark"><i class="bx bx-download h3 m-0"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -120,12 +114,12 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <h5 class="font-size-12 mb-1"><a href="#" class="text-dark">Skote Landing.Zip</a></h5>
-                                                <small>Size : 3.25 MB</small>
+                                                <h5 class="font-size-12 mb-1"><a href="{{ route('member-school' , ['member' => $member->id]) }}" class="text-dark">Download</a></h5>
+                                                <small>Size : KB</small>
                                             </td>
                                             <td>
                                                 <div class="">
-                                                    <a href="#" class="text-dark"><i class="bx bx-download h3 m-0"></i></a>
+                                                    <a href="{{ route('member-national' , ['member' => $member->id]) }}" class="text-dark"><i class="bx bx-download h3 m-0"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -148,35 +142,35 @@
                                 <tbody>
                                 <tr>
                                     <th scope="row">Full Name :</th>
-                                    <td>Tiger Nixon</td>
+                                    <td>{{ $member->name() }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Mobile :</th>
-                                    <td>(123) 123 1234</td>
+                                    <td>{{ $member->number }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">E-mail :</th>
-                                    <td class="text-wrap">tigern@gmail.com</td>
+                                    <td class="text-wrap">{{ $member->email }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Address :</th>
-                                    <td class="text-wrap">California, United States</td>
+                                    <td class="text-wrap">{{ $member->address }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">School Name :</th>
-                                    <td class="text-wrap">University of Zimbabwe</td>
+                                    <td class="text-wrap">{{ $member->school_name }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Date of Birth :</th>
-                                    <td class="text-wrap">13 May 1999</td>
+                                    <td class="text-wrap">{{ $member->date_of_birth }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Chapter :</th>
-                                    <td class="text-wrap">Harare</td>
+                                    <td class="text-wrap">{{ $member->chapter }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Current Year :</th>
-                                    <td class="text-wrap">Third Year</td>
+                                    <td class="text-wrap">{{ $member->current_year }}</td>
                                 </tr>
                                 </tbody>
                             </table>

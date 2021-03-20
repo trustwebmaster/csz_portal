@@ -22,7 +22,6 @@ Route::get('/', function(){
 Route::post('/paynow' , 'PaynowController@initialise')->name('initialise');
 Route::get('/poll' , 'PaynowController@poll')->name('poll');
 
-
 Auth::routes();
 
 Route::group(['middleware' => 'auth'] , function () {
@@ -38,7 +37,12 @@ Route::group(['middleware' => 'auth'] , function () {
     Route::group(['middleware' =>  'admin'] , function () {
      Route::get('/admin' , 'AdminController@index')->name('admin');
      Route::get('/admin/pending-approvals' , 'AdminController@pendingApprovals')->name('admin.pending-approvals');
-     Route::get('/admin/pending-approvals/show' , 'AdminController@pendingApprovalsShow')->name('admin.pending-approvals.show');
+     Route::get('/admin/pending-approvals/show/{user}' , 'AdminController@pendingApprovalsShow')->name('admin.pending-approvals.show');
+     Route::get('/admin/member/school-id/{member}' , 'AdminController@schoolID')->name('member-school');
+     Route::get('/admin/membe/national-id/{member}' , 'AdminController@nationalID')->name('member-national');
+     Route::get('/approve-member/{member}' , 'AdminController@approve_member')->name('accept-member');
+     Route::get('/decline-member/{member}' , 'AdminController@decline_member')->name('decline-member');
+     Route::post('/member-approval/{member}' , 'AdminController@approval')->name('member-approval');
     });
 });
 
