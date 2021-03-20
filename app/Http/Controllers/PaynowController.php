@@ -40,21 +40,16 @@ class PaynowController extends Controller
         DB::beginTransaction();
 
         try {
-//            $path = '/public/Student Documents';
-//            $filename1 = 'Student-'.\request('surname'). '-' .\request()->file('national_id')->getClientOriginalExtension();
-//            request()->file('national_id')->storeAs($path ,$filename1);
-//            $filename2 = 'Member'.\request('surname'). '-' .\request()->file('school_id')->getClientOriginalExtension();
-//            request()->file('school_id')->storeAs($path ,$filename2);
-//            $national_id = Storage::disk('local')->getAdapter()->applyPathPrefix($path.'/'.$filename1);
-//            $school_id = Storage::disk('local')->getAdapter()->applyPathPrefix($path.'/'.$filename2);
 
             $national = $request->file('national_id');
             $school = $request->file('school_id');
+            $profile = $request->file('')
             $national_id = Storage::disk('public')->put('Members' , $national);
             $school_id = Storage::disk('public')->put('Members' , $school);
 
             $member = StudentMember::Create([
                 'chapter'  => $request->chapter,
+                'user_id' => $user->id,
                 'email' => session('membership')['email'],
                 'interest_group' => $request->interest_group,
                 'firstname' => $request->firstname,
@@ -67,15 +62,15 @@ class PaynowController extends Controller
                 'current_year' => $request->current_year,
                 'notes' => $request->notes,
                 'school_id' => $school_id,
-                'national_id' => $national_id,
+                'national_id' => $national_id
             ]);
 
 
-            $user = User::UpdateOrCreate([
-                'name' => $member->firstname . $member->surname,
-                'email' => $member->email,
-                'password' =>$member->password,
-            ]);
+              $user = User::UpdateOrCreate([
+                  'name' => $member->firstname . $member->surname,
+                  'email' => $member->email,
+                  'password' =>$member->password,
+              ]);
 
 
             $order =  Order::Create([
