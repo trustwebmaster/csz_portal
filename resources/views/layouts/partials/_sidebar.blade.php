@@ -15,6 +15,15 @@
                     </a>
                 </li>
 
+                <li class="menu-title" key="t-menu">Membership</li>
+
+                <li>
+                    <a href="{{ route('admin.pending-approvals') }}" class="waves-effect">
+                        <i class="bx bx-error"></i>
+                        <span>Pending Approvals</span>
+                    </a>
+                </li>
+
                 <li class="menu-title" key="t-menu">Members</li>
 
                 <li>
@@ -35,15 +44,6 @@
                     <a href="#" class="waves-effect">
                         <i class="bx bxs-city"></i>
                         <span>Companies</span>
-                    </a>
-                </li>
-
-                <li class="menu-title" key="t-menu">Other</li>
-
-                <li>
-                    <a href="#" class="waves-effect">
-                        <i class="bx bx-error"></i>
-                        <span>Pending Approvals</span>
                     </a>
                 </li>
 
