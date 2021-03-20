@@ -36,10 +36,11 @@
 
 
                             <tbody>
+                            @foreach($users as $user)
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>tigern@gmail.com</td>
-                                <td>12 Dec 2020</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->created_at->format('d-m-Y') }}</td>
                                 <td>
                                     <div>
                                         <ul class="list-inline mb-0 font-size-16">
@@ -50,6 +51,7 @@
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -32,11 +32,13 @@ class AdminController extends Controller
     }
 
     public function pendingApprovalsShow(){
-        return view('admin.pending-approvals-show');
+
+        return view('admin.pending-approvals-show' );
     }
 
     public function pendingApprovals(){
-        return view('admin.pending-approvals');
+        $users = User::where('status' , 'pending')->get();
+        return view('admin.pending-approvals' , ['users' => $users]);
     }
 
     /**
