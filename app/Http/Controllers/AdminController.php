@@ -30,6 +30,11 @@ class AdminController extends Controller
         return view('admin.pending-approvals');
     }
 
+    public function reportShow(){
+        return view('admin.reports.report-show');
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *

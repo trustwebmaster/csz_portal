@@ -45,3 +45,79 @@
 
 <!-- App js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
+
+<script>
+    $(document).ready(function () {
+        $('input[type="radio"]').click(function () {
+            var value = $("input:radio[name=report]:checked").val();
+            if (value == "pending_reports") {
+                $('#pending_reports').show();
+                $('#to').show();
+                $('#from').show();
+                document.getElementById("to").required = false;
+                document.getElementById("from").required = false;
+                document.getElementById("employee").required = true;
+            } else if (value == "leave_ledger_department") {
+                $('#department').show();
+                $('#employee').hide();
+                $('#from').hide();
+                $('#to').hide();
+                document.getElementById("to").required = false;
+                document.getElementById("from").required = false;
+                document.getElementById("department").required = true;
+                document.getElementById("employee").required = false;
+            } else if (value == "leave_summary_employee") {
+                $('#department').hide();
+                $('#employee').show();
+                $('#from').hide();
+                $('#to').hide();
+                document.getElementById("to").required = false;
+                document.getElementById("from").required = false;
+                document.getElementById("employee").required = true;
+                document.getElementById("department").required = false;
+            } else if (value == "leave_summary_department") {
+                $('#department').show();
+                $('#employee').hide();
+                $('#from').hide();
+                $('#to').hide();
+                document.getElementById("to").required = false;
+                document.getElementById("from").required = false;
+                document.getElementById("department").required = true;
+            } else if (value == "leave_applications") {
+                $('#department').hide();
+                $('#employee').hide();
+                $('#to').show();
+                $('#from').show();
+                document.getElementById("to").required = true;
+                document.getElementById("from").required = true;
+                document.getElementById("employee").required = false;
+                document.getElementById("department").required = false;
+            } else if (value == "overtime") {
+                $('#employee').hide();
+                $('#department').hide();
+                $('#to').show();
+                $('#from').show();
+                document.getElementById("to").required = true;
+                document.getElementById("from").required = true;
+                document.getElementById("department").required = false;
+                document.getElementById("employee").required = false;
+            } else if (value == "extension") {
+                $('#employee').hide();
+                $('#department').hide();
+                $('#to').show();
+                $('#from').show();
+                document.getElementById("to").required = true;
+                document.getElementById("from").required = true;
+                document.getElementById("department").required = false;
+                document.getElementById("employee").required = false;
+            } else {
+                $('#department').show();
+                $('#employee').show();
+                $('#to').show();
+                $('#from').show();
+                document.getElementById("artisan").required = false;
+                document.getElementById("artisan").required = false;
+            }
+        });
+    });
+</script>
