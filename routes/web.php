@@ -39,7 +39,6 @@ Route::group(['middleware' => 'auth'] , function () {
     Route::get('/admin' , 'AdminController@index')->name('admin');
     Route::get('/admin/pending-approvals' , 'AdminController@pendingApprovals')->name('admin.pending-approvals');
     Route::get('/admin/pending-approvals/show' , 'AdminController@pendingApprovalsShow')->name('admin.pending-approvals.show');
-    Route::get('/admin/reports' , 'AdminController@report')->name('admin.report');
     Route::get('/admin/reports/show' , 'AdminController@reportShow')->name('admin.report.show');
 
     });
