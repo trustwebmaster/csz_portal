@@ -36,19 +36,21 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <form class="repeater" enctype="multipart/form-data" action="#" method="post">
-                                            <div data-repeater-list="group-a">
+                                        <form class="repeater" enctype="multipart/form-data" action="{{ route('upload.member.files') }}" method="post">
+                                            @csrf
+
+                                            <div data-repeater-list="files">
                                                 <div data-repeater-item class="row">
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <label for="resume">Upload</label>
-                                                            <input type="file" class="form-control">
+                                                            <input type="file" class="form-control" name="file" required>
                                                         </div>
                                                     </div>
 
                                                     <div  class="form-group col-md-5">
                                                         <label for="name">Name</label>
-                                                        <input type="text" id="name" name="untyped-input" class="form-control" placeholder="Enter file name"/>
+                                                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter file name"/>
                                                     </div>
 
                                                     <div class="col-md-2 align-self-center">
@@ -84,8 +86,7 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>User ID</th>
-                                <th>Name</th>
+                                <th>Document Name</th>
                                 <th>Status</th>
                                 <th>Download</th>
                             </tr>
@@ -93,20 +94,21 @@
 
 
                             <tbody>
+                            @foreach($documents as $doc)
                             <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
+                                <td>{{ $doc->id }}</td>
+                                <td>{{ $doc->name }}</td>
                                 <td>
                                     <span>
-                                        <span class="badge badge-danger">Status</span>
+                                        <span class="badge badge-primary">{{ $doc->status }}</span>
                                     </span>
                                 </td><td>
                                     <span>
-                                        <a href="#" class="text-primary"><i class="bx bx-download h3 m-0"></i></a>
+                                        <a href="{{ route('download.member.files' , ['document' => $doc->id]) }}" class="text-primary"><i class="bx bx-download h3 m-0"></i></a>
                                     </span>
                                 </td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

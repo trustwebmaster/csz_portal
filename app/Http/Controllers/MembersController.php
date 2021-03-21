@@ -7,6 +7,7 @@ use App\Members;
 use App\Order;
 use App\StudentMember;
 use App\User;
+use App\UserDocuments;
 use Illuminate\Http\Request;
 use App\Repositories\MembersRepository;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,7 @@ use Paynow\Http\ConnectionException;
 use Paynow\Payments\HashMismatchException;
 use Paynow\Payments\InvalidIntegrationException;
 use Paynow\Payments\Paynow;
+use PHPUnit\Exception;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class MembersController extends Controller
@@ -71,7 +73,8 @@ class MembersController extends Controller
 
     public function cpdPoints()
     {
-        return view('member.cpd-points');
+        $documents  = UserDocuments::where('user_id' , Auth::user()->id)->get();
+        return view('member.cpd-points' , ['documents' => $documents]);
     }
 
 
@@ -237,48 +240,9 @@ class MembersController extends Controller
         return view('admin.memberForm', $data);
     }
 
-    public function store(Request $request)
-    {
-        //save new Member
-        $member = \App\Members::create([
-            'firstName' => $request->firstName,
-            'lastName' => $request->lastName,
-            'email' => $request->email,
-            'address1' => $request->address1,
-            'address2' => $request->address2,
-            'postcode' => $request->postcode,
-            'DOB' => $request->DOB,
-            'phone' => $request->phone,
-            'subscription' => $request->subscription
-        ]);
 
-    }
 
-    public function show(Members $members, Request $request)
-    {
-        //
-        $member_id = str_after($request->path(), 'members/');
 
-        $data = [
-            'member' => $members::find($member_id),
-        ];
-        return view('admin.show', $data);
-    }
-
-    public function edit(Members $members, Request $request)
-    {
-        //get members id
-        $member_id = str_after($request->path(), 'members/');
-        $member_id = str_before($member_id, '/');
-
-        $data = [
-            'members' => $this->members->getMember($member_id),
-            'isEditPage' => true, //boolean to show form values
-            'title' => 'Edit Member',
-        ];
-
-        return view('admin.memberForm', $data);
-    }
 
     public function update(Request $request, Members $members)
     {
@@ -302,25 +266,40 @@ class MembersController extends Controller
 
     }
 
-    public function destroy(Members $members)
+    public function member_uploads(Request $request)
     {
-        //
+        $files = request('files');
+
+        try {
+            if($files == null){
+                return "error no files selected";
+            }
+            else{
+                foreach ($files as $file){
+                    $doc = $file['file'];
+                    $document = Storage::disk('public')->put('UserDocuments' , $doc);
+
+                    $member = UserDocuments::UpdateOrCreate([
+                       'name' => $file['name'] ]
+                        ,
+                        [
+                            'path' => $document ,
+                            'user_id' => Auth::user()->id,
+                        ]
+                    );
+
+                }
+            }
+
+        }catch (Exception $exception){
+            dd($exception);
+        }
+
+        return redirect()->route('user.cpd-points');
     }
 
-    // reports index
-    public function reportsIndex()
-    {
-        // code...
-        return view('admin.reportsIndex');
-    }
+    public function member_download(UserDocuments $document){
 
-    // run reports
-    public function viewReport(Request $request)
-    {
-        $data = array(
-            'members' => $this->members->runReport($request->month, $request->year),
-            'total' => $this->members->runReport($request->month, $request->year)->count(),
-        );
-        return view('admin.reports', $data);
+        return Storage::disk('public')->download($document->path);
     }
 }

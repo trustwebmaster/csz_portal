@@ -18,6 +18,8 @@ class CreateUserDocumentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('path');
+            $table->string('status')->default('pending');
+            $table->bigInteger('points')->nullable();
             $table->timestamps();
         });
     }

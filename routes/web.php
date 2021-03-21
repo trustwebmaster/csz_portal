@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'] , function () {
         Route::get('/user/cpd-events' , 'MembersController@cpdEvents')->name('user.cpd-events');
         Route::get('/user/cpd-points' , 'MembersController@cpdPoints')->name('user.cpd-points');
         Route::get('/user/profile' , 'MembersController@userProfile')->name('user.profile');
+        Route::post('/member-uploads' , 'MembersController@member_uploads')->name('upload.member.files');
+        Route::get('/member-upload-download/{document}' , 'MembersController@member_download')->name('download.member.files');
     });
 });
 

@@ -62,44 +62,45 @@
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
-                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
-                               style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Amount</th>
-                                <th>email</th>
-                                <th>Phone Number</th>
-                                <th>Payment Date</th>
-                                <th>Payment Status</th>
-                                <th>Payment Url</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($orders as $order)
+                        <div class="table-responsive">
+                            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
+                                   style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
                                 <tr>
-                                    <td>{{ $order->id }}</td>
-                                    <td>{{ $order->price }}</td>
-                                    <td>{{ $order->email }}</td>
-                                    <td>{{ $order->phone }}</td>
-                                    <td>{{ $order->created_at->format('d-m-Y') }}</td>
-                                    <td>
-                                        @if($order->ISpaid == 1)
-                                            <span class="badge badge-success">Success</span>
-                                            @else
-                                            <span class="badge badge-danger">Failed</span>
-                                        @endif
-                                    </td>
-                                    <td>{{ $order->poll_url }}</td>
+                                    <th>ID</th>
+                                    <th>Amount</th>
+                                    <th>email</th>
+                                    <th>Phone Number</th>
+                                    <th>Payment Date</th>
+                                    <th>Payment Status</th>
+                                    <th>Payment Url</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($orders as $order)
+                                    <tr>
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->price }}</td>
+                                        <td>{{ $order->email }}</td>
+                                        <td>{{ $order->phone }}</td>
+                                        <td>{{ $order->created_at->format('d-m-Y') }}</td>
+                                        <td>
+                                            @if($order->ISpaid == 1)
+                                                <span class="badge badge-success">Success</span>
+                                            @else
+                                                <span class="badge badge-danger">Failed</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $order->poll_url }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div> <!-- end col -->
         </div>
         </div>
     </div>
-
 @endsection
