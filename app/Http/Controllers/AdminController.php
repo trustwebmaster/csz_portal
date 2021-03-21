@@ -13,7 +13,7 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index()
     {
@@ -22,26 +22,29 @@ class AdminController extends Controller
         $professional = ProfessionalMember::all()->count();
 
 
-        return view('admin.index' ,
-            ['students' => $students , 'company' => $company , 'professional' => $professional] );
+        return view('admin.index', ['students' => $students, 'company' => $company, 'professional' => $professional]);
     }
 
-    public function members(){
-        $users  = User::where('status' , 'pending')->get();
-        return view('admin.members-approval' , ['users' => $users]);
+    public function members()
+    {
+        $users = User::where('status', 'pending')->get();
+        return view('admin.members-approval', ['users' => $users]);
     }
 
-    public function pendingApprovalsShow(){
+    public function pendingApprovalsShow()
+    {
 
-        return view('admin.pending-approvals-show' );
+        return view('admin.pending-approvals-show');
     }
 
-    public function pendingApprovals(){
-        $users = User::where('status' , 'pending')->get();
-        return view('admin.pending-approvals' , ['users' => $users]);
+    public function pendingApprovals()
+    {
+        $users = User::where('status', 'pending')->get();
+        return view('admin.pending-approvals', ['users' => $users]);
     }
 
-    public function reportShow(){
+    public function reportShow()
+    {
         return view('admin.reports.report-show');
     }
 
@@ -63,7 +66,7 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -74,7 +77,7 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -85,7 +88,7 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -96,8 +99,8 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -108,7 +111,7 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
