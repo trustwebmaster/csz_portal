@@ -42,6 +42,11 @@ class AdminController extends Controller
         return view('admin.pending-approvals' , ['users' => $users]);
     }
 
+    public function reportShow(){
+        return view('admin.reports.report-show');
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -72,19 +77,13 @@ class AdminController extends Controller
         return Storage::disk('public')->download($member->school_id);
     }
 
-    public function approve_member(User $member){
-      $test =  $member->Update([
-           'status' => 'Approved'
-        ]);
-      return $test;
-
+    public function approve_member($member){
+    User::where('id' , $member)->update(['status' => 'Approved']);
         return redirect()->route('admin.pending-approvals');
     }
 
-    public function decline_member(User $member){
-        $member->update([
-           'status' => 'Decline'
-        ]);
+    public function decline_member($member){
+        $test = User::where('id' , $member)->update(['status' => 'Decline']);
         return redirect()->route('admin.pending-approvals');
     }
 

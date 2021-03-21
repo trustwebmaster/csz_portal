@@ -59,39 +59,50 @@
                 <li class="menu-title" key="t-menu">Reports</li>
 
                 <li>
-                    <a href="#" class="waves-effect">
-                        <i class="bx bx-error"></i>
-                        <span>Pending</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#" class="waves-effect">
-                        <i class="bx bx-badge-check"></i>
-                        <span>Approved</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#" class="waves-effect">
+                    <a href="#"
+                       class="waves-effect"
+                       data-toggle="modal" data-target="#modal-info"
+                    >
                         <i class="bx bxs-book-open"></i>
-                        <span>Students</span>
+                        <span>Generate Reports</span>
                     </a>
+
                 </li>
 
-                <li>
-                    <a href="#" class="waves-effect">
-                        <i class="bx bxs-briefcase"></i>
-                        <span>Professionals</span>
-                    </a>
-                </li>
+{{--                <li>--}}
+{{--                    <a href="#" class="waves-effect">--}}
+{{--                        <i class="bx bx-error"></i>--}}
+{{--                        <span>Pending</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
 
-                <li>
-                    <a href="#" class="waves-effect">
-                        <i class="bx bxs-business"></i>
-                        <span>Companies</span>
-                    </a>
-                </li>
+{{--                <li>--}}
+{{--                    <a href="#" class="waves-effect">--}}
+{{--                        <i class="bx bx-badge-check"></i>--}}
+{{--                        <span>Approved</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+
+{{--                <li>--}}
+{{--                    <a href="#" class="waves-effect">--}}
+{{--                        <i class="bx bxs-book-open"></i>--}}
+{{--                        <span>Students</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+
+{{--                <li>--}}
+{{--                    <a href="#" class="waves-effect">--}}
+{{--                        <i class="bx bxs-briefcase"></i>--}}
+{{--                        <span>Professionals</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+
+{{--                <li>--}}
+{{--                    <a href="#" class="waves-effect">--}}
+{{--                        <i class="bx bxs-business"></i>--}}
+{{--                        <span>Companies</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
 
             </ul>
         </div>

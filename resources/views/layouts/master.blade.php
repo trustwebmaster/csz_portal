@@ -34,6 +34,8 @@
 <!-- Begin page -->
 <div id="layout-wrapper">
 
+    @include('layouts.partials._reports')
+
     <!-- Topbar Start -->
         @include('layouts.partials._topbar')
     <!-- Topbar End -->

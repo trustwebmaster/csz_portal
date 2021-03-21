@@ -34,7 +34,7 @@
                                 <h5 class="text-truncate font-size-15">{{ $member->name() }}</h5>
                             </div>
                             <div>
-                                <a type="button" href="{{ route('accept-member' , ['member' => $member->user_id]) }}"
+                                <a type="button" href="{{ route('accept-member' , $member->user_id) }}"
                                         class="btn btn-success btn-xs waves-effect waves-light">Approve
                                 </a>
                                 |
