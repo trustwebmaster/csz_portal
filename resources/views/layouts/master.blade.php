@@ -42,7 +42,12 @@
 
 
     <!-- Left Sidebar Start -->
-        @include('layouts.partials._sidebar')
+       @if(Auth::user()->role == "admin")
+           @include('layouts.partials._sidebar')
+       @else
+           @include('layouts.partials._clientSidebar')
+       @endif
+
     <!-- Left Sidebar End -->
 
     <!-- Start right Content here -->
