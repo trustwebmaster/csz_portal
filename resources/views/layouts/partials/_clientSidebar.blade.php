@@ -17,9 +17,25 @@
                 <li class="menu-title" key="t-menu">Membership</li>
 
                 <li>
-                    <a href="#" class="waves-effect">
-                        <i class="bx bx-error"></i>
+                    <a href="{{ route('user.membership-renewal') }}" class="waves-effect">
+                        <i class="bx bx-shield-quarter"></i>
                         <span>Membership Renewal</span>
+                    </a>
+                </li>
+
+                <li class="menu-title" key="t-menu">CPD</li>
+
+                <li>
+                    <a href="{{ route('user.cpd-events') }}" class="waves-effect">
+                        <i class="bx bx-calendar-event"></i>
+                        <span>CPD Events</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('user.cpd-points') }}" class="waves-effect">
+                        <i class="bx bx-check-shield"></i>
+                        <span>CPD Points</span>
                     </a>
                 </li>
             </ul>
