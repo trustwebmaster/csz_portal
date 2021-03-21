@@ -43,6 +43,26 @@
 <!-- lightbox init js-->
 <script src="{{ asset('assets/js/pages/lightbox.init.js') }}"></script>
 
+<!-- form repeater js -->
+<script src="{{ asset('assets/libs/jquery.repeater/jquery.repeater.min.js') }}"></script>
+<script src="{{ asset('assets/js/pages/form-repeater.int.js') }}"></script>
+
+<!-- calendar js -->
+<script src="{{ asset('../../../uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.min.js') }}"></script>
+<script src="{{ asset('assets/libs/tui-dom/tui-dom.min.js') }}"></script>
+
+<script src="{{ asset('assets/libs/tui-time-picker/tui-time-picker.min.js') }}"></script>
+<script src="{{ asset('assets/libs/tui-date-picker/tui-date-picker.min.js') }}"></script>
+
+<script src="{{ asset('assets/libs/moment/min/moment.min.js') }}"></script>
+<script src="{{ asset('assets/libs/chance/chance.min.js') }}"></script>
+
+<script src="{{ asset('assets/libs/tui-calendar/tui-calendar.min.js') }}"></script>
+
+<script src="{{ asset('assets/js/pages/calendars.js') }}"></script>
+<script src="{{ asset('assets/js/pages/schedules.js') }}"></script>
+<script src="{{ asset('assets/js/pages/calendar.init.js') }}"></script>
+
 <!-- App js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
 
