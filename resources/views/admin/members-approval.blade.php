@@ -17,35 +17,60 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>email</th>
+                        <th>status</th>
+                        <th>registration date</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
-
-
                     <tbody>
+                @foreach($users as $user)
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                      <th>{{ $user->name }}</th>
+                      <th>{{ $user->email }}</th>
+                      <th>{{ $user->status }}</th>
+                      <th>{{ $user->created_at->format('d-m-Y') }}</th>
+                        <th>
+                            <button type="button" class="btn btn-info waves-effect waves-light" data-toggle="modal" data-target="#staticBackdrop">
+                                Action
+                            </button>
+                        </th>
                     </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                    </tr>
+                    @endforeach
                 </table>
             </div>
         </div>
-    </div> <!-- end row -->
+    </div>
+
+    @foreach($users as $user)
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <select name="user" id="user" class="form-control" required>
+                                    <option value="approve">Approve</option>
+                                    <option value="decline">Decline</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
 @endsection
 

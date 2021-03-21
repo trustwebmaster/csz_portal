@@ -45,7 +45,7 @@
                                     <div>
                                         <ul class="list-inline mb-0 font-size-16">
                                             <li class="list-inline-item">
-                                                <a href="{{ route('admin.pending-approvals.show') }}" class="text-success p-1"><i class="bx bxs-edit-alt"></i></a>
+                                                <a href="{{ route('admin.pending-approvals.show' , ['user' => $user->id]) }}" class="text-success p-1"><i class="bx bxs-edit-alt"></i></a>
                                             </li>
                                         </ul>
                                     </div>

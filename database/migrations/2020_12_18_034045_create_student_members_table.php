@@ -17,6 +17,7 @@ class CreateStudentMembersTable extends Migration
             $table->increments('id');
             $table->string('chapter');
             $table->string('email');
+            $table->unsignedBigInteger('user_id');
             $table->string('interest_group');
             $table->string('firstname');
             $table->string('surname');

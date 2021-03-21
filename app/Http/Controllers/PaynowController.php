@@ -37,19 +37,25 @@ class PaynowController extends Controller
 
     public function initialise(MemberReqeust $request)
     {
-        DB::beginTransaction();
-
         try {
+            DB::beginTransaction();
 
-
+            $national = $request->file('national_id');
             $profile =$request->file('profile');
             $school = $request->file('school_id');
             $national_id = Storage::disk('public')->put('Members' , $national);
             $school_id = Storage::disk('public')->put('Members' , $school);
             $image = Storage::disk('public')->put('Members' , $profile);
 
+            $user = User::UpdateOrCreate([
+                'name' => $request->firstname . ' '.  $request->surname,
+                'email' => session('membership')['email'],
+                'password' =>Hash::make($request->password),
+            ]);
+
             $member = StudentMember::Create([
                 'chapter'  => $request->chapter,
+                'user_id' => $user->id,
                 'email' => session('membership')['email'],
                 'interest_group' => $request->interest_group,
                 'firstname' => $request->firstname,
@@ -67,23 +73,20 @@ class PaynowController extends Controller
             ]);
 
 
-            $user = User::UpdateOrCreate([
-                'name' => $member->firstname . $member->surname,
-                'email' => $member->email,
-                'password' =>$member->password,
-            ]);
-
-
-            $order =  Order::Create([
+            $order = Order::Create([
+                'user_id' => $user->id,
                 'price' => $request->amount,
                 'email' => session('membership')['email'],
                 'phone' => $request->ecocash_number,
             ]);
+
         }
         catch (\Exception  $e  ){
-
             dd($e);
             DB::rollBack();
+            $user->delete();
+            $order->delete();
+            $member->delete();
         }
         DB::commit();
 
