@@ -87,15 +87,21 @@ class AdminController extends Controller
         return redirect()->route('admin.pending-approvals');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function students()
     {
-        //
+        $students = StudentMember::has('students')->get();
+        dd($students);
+        return view('admin.students');
+    }
+
+    public function professional()
+    {
+        return view('admin.professionals');
+    }
+
+    public function company()
+    {
+        return view('admin.company');
     }
 
     /**

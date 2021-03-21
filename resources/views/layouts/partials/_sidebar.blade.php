@@ -27,21 +27,21 @@
                 <li class="menu-title" key="t-menu">Members</li>
 
                 <li>
-                    <a href="#" class="waves-effect">
+                    <a href="{{ route('students') }}" class="waves-effect">
                         <i class="bx bx-book-open"></i>
                         <span>Students</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="#" class="waves-effect">
+                    <a href="{{ route('professional') }}" class="waves-effect">
                         <i class="bx bx-briefcase-alt"></i>
                         <span>Professionals</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="#" class="waves-effect">
+                    <a href="{{ route('company') }}" class="waves-effect">
                         <i class="bx bxs-city"></i>
                         <span>Companies</span>
                     </a>

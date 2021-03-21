@@ -36,5 +36,9 @@ class User extends Authenticatable
         return $this->hasMany(InterestGroup::class , 'user_id');
     }
 
+    public function students(){
+        return $this->hasOne(StudentMember::class , 'user_id');
+    }
+
 
 }

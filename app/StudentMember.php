@@ -36,5 +36,9 @@ class StudentMember extends Model
           return $this->hasMany('App\Models\Order');
      }
 
+     public function users(){
+         return $this->belongsTo(User::class , 'user_id');
+     }
+
 
 }
