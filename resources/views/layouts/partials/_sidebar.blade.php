@@ -69,41 +69,6 @@
 
                 </li>
 
-{{--                <li>--}}
-{{--                    <a href="#" class="waves-effect">--}}
-{{--                        <i class="bx bx-error"></i>--}}
-{{--                        <span>Pending</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-
-{{--                <li>--}}
-{{--                    <a href="#" class="waves-effect">--}}
-{{--                        <i class="bx bx-badge-check"></i>--}}
-{{--                        <span>Approved</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-
-{{--                <li>--}}
-{{--                    <a href="#" class="waves-effect">--}}
-{{--                        <i class="bx bxs-book-open"></i>--}}
-{{--                        <span>Students</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-
-{{--                <li>--}}
-{{--                    <a href="#" class="waves-effect">--}}
-{{--                        <i class="bx bxs-briefcase"></i>--}}
-{{--                        <span>Professionals</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-
-{{--                <li>--}}
-{{--                    <a href="#" class="waves-effect">--}}
-{{--                        <i class="bx bxs-business"></i>--}}
-{{--                        <span>Companies</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-
             </ul>
         </div>
         <!-- Sidebar -->
