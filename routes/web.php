@@ -52,6 +52,9 @@ Route::group(['middleware' => 'auth'] , function () {
      Route::get('/admin/students' , 'AdminController@students')->name('students');
      Route::get('/admin/professional' , 'AdminController@professional')->name('professional');
      Route::get('/admin/companies' , 'AdminController@company')->name('company');
+    Route::get('/admin/cpd-points' , 'AdminController@cpdPoints')->name('admin.cpd-points');
+    Route::get('/admin/cpd-points/show' , 'AdminController@cpdPointsShow')->name('admin.cpd-points.show');
+
 
     });
 });

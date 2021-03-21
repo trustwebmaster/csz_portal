@@ -74,13 +74,6 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="mb-2">
-                             <span class="float-right">
-                                <input type="hidden" class="rating" data-filled="mdi mdi-star text-primary" data-empty="mdi mdi-star-outline text-muted" data-readonly value="3"/>
-                            </span>
-                            <a href="" data-toggle="modal" data-target=".uploads" class="btn btn-sm btn-info">Upload Files</a>
-                        </div>
-
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
                                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
@@ -90,6 +83,7 @@
                                 <th>Document Name</th>
                                 <th>Status</th>
                                 <th>Download</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
 
@@ -103,10 +97,20 @@
                                     <span>
                                         <span class="badge badge-danger">Status</span>
                                     </span>
-                                </td><td>
+                                </td>
+                                <td>
                                     <span>
                                         <a href="#" class="text-primary"><i class="bx bx-download h3 m-0"></i></a>
                                     </span>
+                                </td>
+                                <td>
+                                    <div>
+                                        <ul class="list-inline mb-0 font-size-16">
+                                            <li class="list-inline-item">
+                                                <a href="{{ route('admin.cpd-points.show') }}" class="text-success p-1"><i class="bx bxs-edit-alt"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                             </tbody>
