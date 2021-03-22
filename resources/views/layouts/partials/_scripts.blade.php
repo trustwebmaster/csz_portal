@@ -63,6 +63,11 @@
 <script src="{{ asset('assets/js/pages/schedules.js') }}"></script>
 <script src="{{ asset('assets/js/pages/calendar.init.js') }}"></script>
 
+<!-- Bootstrap rating js -->
+<script src="{{ asset('assets/libs/bootstrap-rating/bootstrap-rating.min.js') }}"></script>
+
+<script src="{{ asset('assets/js/pages/rating-init.js') }}"></script>
+
 <!-- App js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
 

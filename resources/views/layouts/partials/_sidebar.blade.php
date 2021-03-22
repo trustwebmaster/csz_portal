@@ -56,6 +56,15 @@
                     </a>
                 </li>
 
+                <li class="menu-title" key="t-menu">CPD</li>
+
+                <li>
+                    <a href="{{ route('admin.cpd-points') }}" class="waves-effect">
+                        <i class="bx bx-check-shield"></i>
+                        <span>CPD Points</span>
+                    </a>
+                </li>
+
                 <li class="menu-title" key="t-menu">Reports</li>
 
                 <li>

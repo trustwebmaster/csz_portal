@@ -19,6 +19,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/tui-time-picker/tui-time-picker.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/tui-date-picker/tui-date-picker.min.css') }}">
     <link href="{{ asset('assets/libs/tui-calendar/tui-calendar.min.css') }}" rel="stylesheet" type="text/css" />
+
+    <!-- Bootstrap Rating css -->
+    <link href="{{ asset('assets/libs/bootstrap-rating/bootstrap-rating.css') }}" rel="stylesheet" type="text/css" />
+
     <!-- Bootstrap Css -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -59,6 +63,19 @@
     <div class="main-content">
 
         <div class="page-content">
+
+            <!-- Activation alert -->
+
+        @if(Auth::user()->role == "user")
+                <div class="container-fluid">
+                    <div class="alert alert-danger" role="alert">
+                        Your license expired
+                    </div>
+                </div>
+        @endif
+
+            <!-- Activation alert end -->
+
             @yield('content')
         </div>
 

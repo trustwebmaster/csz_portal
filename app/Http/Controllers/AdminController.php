@@ -11,11 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
-     */
     public function index()
     {
         $students = StudentMember::all()->count();
@@ -48,12 +43,6 @@ class AdminController extends Controller
         return view('admin.reports.report-show');
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function approval(StudentMember $member)
     {
         $member->update([
@@ -63,12 +52,6 @@ class AdminController extends Controller
         return redirect()->route('admin.pending-approvals.show');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function nationalID(StudentMember $member)
     {
         return Storage::disk('public')->download($member->national_id);
@@ -124,19 +107,13 @@ class AdminController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function cpdPoints()
     {
-        //
+        return view('admin.cpd-points');
+    }
+    public function cpdPointsShow()
+    {
+        return view('admin.cpd-points-show');
     }
 }

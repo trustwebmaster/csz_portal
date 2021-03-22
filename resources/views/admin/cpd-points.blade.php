@@ -36,21 +36,19 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <form class="repeater" enctype="multipart/form-data" action="{{ route('upload.member.files') }}" method="post">
-                                            @csrf
-
-                                            <div data-repeater-list="files">
+                                        <form class="repeater" enctype="multipart/form-data" action="#" method="post">
+                                            <div data-repeater-list="group-a">
                                                 <div data-repeater-item class="row">
                                                     <div class="col-md-5">
                                                         <div class="form-group">
                                                             <label for="resume">Upload</label>
-                                                            <input type="file" class="form-control" name="file" required>
+                                                            <input type="file" class="form-control">
                                                         </div>
                                                     </div>
 
                                                     <div  class="form-group col-md-5">
                                                         <label for="name">Name</label>
-                                                        <input type="text" id="name" name="name" class="form-control" placeholder="Enter file name"/>
+                                                        <input type="text" id="name" name="untyped-input" class="form-control" placeholder="Enter file name"/>
                                                     </div>
 
                                                     <div class="col-md-2 align-self-center">
@@ -76,42 +74,45 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="mb-2">
-                             <span class="float-right">
-                                <input type="hidden" class="rating" data-filled="mdi mdi-star text-primary" data-empty="mdi mdi-star-outline text-muted" data-readonly value="3"/>
-                            </span>
-                            <a href="" data-toggle="modal" data-target=".uploads" class="btn btn-sm btn-info">Upload Files</a>
-                            <span class="badge badge-pill badge-danger float-right"> 50 </span>
-                        </div>
-
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
                                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Username</th>
                                 <th>Document Name</th>
                                 <th>Status</th>
                                 <th>Download</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
 
 
                             <tbody>
-                            @foreach($documents as $doc)
                             <tr>
-                                <td>{{ $doc->id }}</td>
-                                <td>{{ $doc->name }}</td>
+                                <td>1</td>
+                                <td>John Doe</td>
+                                <td>Certificate</td>
                                 <td>
                                     <span>
-                                        <span class="badge badge-primary">{{ $doc->status }}</span>
-                                    </span>
-                                </td><td>
-                                    <span>
-                                        <a href="{{ route('download.member.files' , ['document' => $doc->id]) }}" class="text-primary"><i class="bx bx-download h3 m-0"></i></a>
+                                        <span class="badge badge-danger">Status</span>
                                     </span>
                                 </td>
+                                <td>
+                                    <span>
+                                        <a href="#" class="text-primary"><i class="bx bx-download h3 m-0"></i></a>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div>
+                                        <ul class="list-inline mb-0 font-size-16">
+                                            <li class="list-inline-item">
+                                                <a href="{{ route('admin.cpd-points.show') }}" class="text-success p-1"><i class="bx bxs-edit-alt"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
                             </tr>
-                            @endforeach
                             </tbody>
                         </table>
                     </div>
