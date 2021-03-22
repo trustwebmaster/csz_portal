@@ -14,6 +14,11 @@ class MembersController extends Controller
 
     protected $members;
 
+    public function __construct()
+    {
+        $this->middleware('user');
+    }
+
     public function index()
     {
         return view('member.index');

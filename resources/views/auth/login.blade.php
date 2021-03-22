@@ -30,7 +30,7 @@
                     </div>
                     <div class="p-2">
                         <form method="POST" action="{{ route('login') }}">
-                            {{ csrf_field() }}
+                            @csrf
                             <div class="form-group mb-3">
                                 <label for="emailaddress">Email address</label>
                                 <input class="form-control" name="email" type="email" id="emailaddress" required="" placeholder="Enter your email">
