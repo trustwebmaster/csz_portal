@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends \TCG\Voyager\Models\User 
 {
     use Notifiable;
 
@@ -27,26 +27,5 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function member(){
-        return $this->hasMany('App\StudentMember');
-    }
-
-    public function interests(){
-        return $this->hasMany(InterestGroup::class , 'user_id');
-    }
-
-    public function students(){
-        return $this->hasOne(StudentMember::class , 'user_id');
-    }
-
-    public function payment(){
-        return $this->hasMany(Order::class , 'user_id');
-    }
-
-    public function documents(){
-        return $this->hasMany(UserDocuments::class , 'user_id');
-    }
-
 
 }

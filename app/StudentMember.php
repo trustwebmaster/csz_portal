@@ -12,33 +12,19 @@ class StudentMember extends Model
           return $query->OrderBy('created_at' , 'desc')->whereChapter('Harare');
       }
 
+      public function getEmailAttribute($email)
+      {
+      return 'Chibaba ' . $email;
+      } 
 
       public function setChapterAttribute($value)
      {
          $this->attributes['chapter'] = strtoupper($value);
-
-
      }
 
-      public function name()
+      public function getNameAttribute()
      {
           return $this->attributes['firstname'].
           ' ' . $this->attributes['surname'];
      }
-
-     public function user()
-     {
-          return $this->belongsTo('App\User');
-     }
-
-     public function order()
-     {
-          return $this->hasMany('App\Models\Order');
-     }
-
-     public function users(){
-         return $this->belongsTo(User::class , 'user_id');
-     }
-
-
 }

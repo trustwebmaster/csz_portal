@@ -17,7 +17,6 @@ class CreateStudentMembersTable extends Migration
             $table->increments('id');
             $table->string('chapter');
             $table->string('email');
-            $table->unsignedBigInteger('user_id');
             $table->string('interest_group');
             $table->string('firstname');
             $table->string('surname');
@@ -28,8 +27,7 @@ class CreateStudentMembersTable extends Migration
             $table->string('address');
             $table->string('notes');
             $table->string('school_id');
-            $table->string('national_id');
-            $table->string('image');
+            $table->string('national_id');          
             $table->timestamps();
         });
     }
