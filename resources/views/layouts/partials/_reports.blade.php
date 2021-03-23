@@ -2,7 +2,7 @@
      id="modal-info">
     <form class="form-horizontal"
           method="POST"
-          action="#">
+          action="{{ route('admin.report.show') }}">
         @csrf
         <div class="modal-dialog">
             <div class="modal-content bg-default">
@@ -24,7 +24,7 @@
                                            type="radio"
                                            id="customRadio1"
                                            name="report"
-                                           value="pending_reports">
+                                           value="pending">
                                     <label for="customRadio1"
                                            class="custom-control-label">Pending
                                     </label>
@@ -34,7 +34,7 @@
                                            type="radio"
                                            id="customRadio2"
                                            name="report"
-                                           value="approved_reports">
+                                           value="approved">
                                     <label for="customRadio2"
                                            class="custom-control-label">Approved</label>
                                 </div>
@@ -43,7 +43,7 @@
                                            type="radio"
                                            id="customRadio8"
                                            name="report"
-                                           value="students_reports">
+                                           value="students">
                                     <label for="customRadio8"
                                            class="custom-control-label">Students</label>
                                 </div>
@@ -52,7 +52,7 @@
                                            type="radio"
                                            id="customRadio3"
                                            name="report"
-                                           value="professionals_reports">
+                                           value="professionals">
                                     <label for="customRadio3"
                                            class="custom-control-label">Professionals</label>
                                 </div>
@@ -61,7 +61,7 @@
                                            type="radio"
                                            id="customRadio4"
                                            name="report"
-                                           value="companies_reports">
+                                           value="companies">
                                     <label for="customRadio4"
                                            class="custom-control-label">Companies</label>
                                 </div>
@@ -127,14 +127,10 @@
                             class="btn btn-default"
                             data-dismiss="modal">Close
                     </button>
-{{--                    <button type="submit"--}}
-{{--                            class="btn btn-primary">Submit--}}
-{{--                    </button>--}}
-
-                    <a href="{{ route('admin.report.show') }}"
+             <button type="submit"
                        class="btn btn-primary">
                         Submit
-                    </a>
+                    </button>
                 </div>
             </div>
             <!-- /.modal-content -->

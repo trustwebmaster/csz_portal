@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CompanyMember;
+use App\Order;
 use App\ProfessionalMember;
 use App\StudentMember;
 use App\User;
@@ -38,9 +39,29 @@ class AdminController extends Controller
         return view('admin.pending-approvals', ['users' => $users]);
     }
 
-    public function reportShow()
+    public function reportShow(Request $request)
     {
-        return view('admin.reports.report-show');
+       $report = request('report');
+       if($report == "pending"){
+           $users  = User::where('status' , 'pending')->get();
+           return view('admin.reports.report-show' , ['users' => $users]);
+       }elseif ($report == "approved"){
+           $users  = User::where('status' , 'approved')->get();
+           return view('admin.reports.report-show' , ['users' => $users]);
+
+       }elseif ($report == "students"){
+           $students = StudentMember::all();
+           return view('admin.reports.admin-reports' , ['students' => $students]);
+
+       }elseif ($report == "professionals"){
+           $students = ProfessionalMember::all();
+           return view('admin.reports.admin-reports' , ['students' => $students]);
+
+       }elseif ($report == "companies"){
+        $students = CompanyMember::all();
+           return view('admin.reports.admin-reports' , ['students' => $students]);
+       }
+
     }
 
     public function approval(StudentMember $member)
@@ -74,19 +95,25 @@ class AdminController extends Controller
 
     public function students()
     {
-        $students = StudentMember::has('students')->get();
-        dd($students);
-        return view('admin.students');
+        $students = StudentMember::all();
+        return view('admin.students' , ['students' => $students]);
     }
 
     public function professional()
     {
-        return view('admin.professionals');
+        $students = ProfessionalMember::all();
+        return view('admin.professionals' ,['students' => $students]);
     }
 
     public function company()
     {
-        return view('admin.company');
+        $students = CompanyMember::all();
+        return view('admin.company' , ['students' => $students]);
+    }
+
+    public function memberPayments(){
+        $payments = Order::where('ISpaid' , 1)->get();
+        return view('admin.member-payments' , ['payments' => $payments]);
     }
 
     /**

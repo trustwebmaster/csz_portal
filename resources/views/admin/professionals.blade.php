@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0 font-size-12">Pending Approvals</h4>
+                    <h4 class="mb-0 font-size-12">Professional Members</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
@@ -29,6 +29,8 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Number</th>
+                                <th>Chapter</th>
                                 <th>Registration Date</th>
                                 <th>Action</th>
                             </tr>
@@ -36,10 +38,12 @@
 
 
                             <tbody>
-                            @foreach($users as $user)
+                            @foreach($students as $user)
                                 <tr>
-                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->name() }}</td>
                                     <td>{{ $user->email }}</td>
+                                    <td>{{ $user->number }}</td>
+                                    <td>{{ $user->chapter }}</td>
                                     <td>{{ $user->created_at->format('d-m-Y') }}</td>
                                     <td>
                                         <div>

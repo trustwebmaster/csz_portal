@@ -10,6 +10,6 @@ class Order extends Model
     protected $guarded = [];
 
     public function student(){
-        return $this->belongsTo('App\StudentMember');
+        return $this->belongsTo(User::class , 'user_id');
     }
 }

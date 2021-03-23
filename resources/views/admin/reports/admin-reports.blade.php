@@ -58,16 +58,20 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>Number</th>
+                                    <th>Chapter</th>
                                     <th>Registration Date</th>
                                 </tr>
                                 </thead>
 
 
                                 <tbody>
-                                @foreach($users as $user)
+                                @foreach($students as $user)
                                     <tr>
-                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->name() }}</td>
                                         <td>{{ $user->email }}</td>
+                                        <td>{{ $user->number }}</td>
+                                        <td>{{ $user->chapter }}</td>
                                         <td>{{ $user->created_at->format('d-m-Y') }}</td>
                                     </tr>
                                 @endforeach

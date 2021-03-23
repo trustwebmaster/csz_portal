@@ -37,7 +37,7 @@
          id="modal-info">
         <form class="form-horizontal"
               method="POST"
-              action="#">
+              action="{{ route('admin-reports') }}">
             @csrf
             <div class="modal-dialog">
                 <div class="modal-content bg-default">

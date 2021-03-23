@@ -50,7 +50,7 @@
                 <li class="menu-title" key="t-menu">Payments</li>
 
                 <li>
-                    <a href="#" class="waves-effect">
+                    <a href="{{ route('member-payments') }}" class="waves-effect">
                         <i class="bx bx-credit-card"></i>
                         <span>All Payments</span>
                     </a>

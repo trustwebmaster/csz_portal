@@ -53,12 +53,13 @@ Route::group(['middleware' => 'auth'] , function () {
      Route::get('/approve-member/{member}' , 'AdminController@approve_member')->name('accept-member');
      Route::get('/decline-member/{member}' , 'AdminController@decline_member')->name('decline-member');
      Route::post('/member-approval/{member}' , 'AdminController@approval')->name('member-approval');
-     Route::get('/admin/reports/show' , 'AdminController@reportShow')->name('admin.report.show');
+     Route::post('/admin/reports/show' , 'AdminController@reportShow')->name('admin.report.show');
      Route::get('/admin/students' , 'AdminController@students')->name('students');
      Route::get('/admin/professional' , 'AdminController@professional')->name('professional');
      Route::get('/admin/companies' , 'AdminController@company')->name('company');
     Route::get('/admin/cpd-points' , 'AdminController@cpdPoints')->name('admin.cpd-points');
     Route::get('/admin/cpd-points/show' , 'AdminController@cpdPointsShow')->name('admin.cpd-points.show');
+    Route::get('/admin/payments' , 'AdminController@memberPayments')->name('member-payments');
 
 
     });
