@@ -16,8 +16,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^2.4",
         "paynow/php-sdk": "^1.0",
-        "realrashid/sweet-alert": "^3.2",
-        "tcg/voyager": "^1.4"
+        "realrashid/sweet-alert": "^3.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
@@ -66,9 +65,5 @@
         ]
     },
     "repositories": {
-        "hooks": {
-            "type": "composer",
-            "url": "https://larapack.io"
-        }
     }
 }
