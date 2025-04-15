@@ -6,378 +6,951 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content=" width=device-width, initial-scale=1">
-		<title>membership</title>
-    <!-- Fonts -->
-		<link href="https://fonts.googleapis.com/css?family=Lato%7COpen+Sans%7CUbuntu:300,400,500,700" rel="stylesheet">
+		<title>CSZ Membership</title>
+    <!-- Modern Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 		 <!-- Icons -->
-    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- CSS assets -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link href="addons/Magnific-Popup/magnific-popup.css" rel="stylesheet">
 		<!-- LOAD slick slider assets -->
 		<link rel="stylesheet" type="text/css" href="addons/slick/slick.css"/>
 		<link rel="stylesheet" type="text/css" href="addons/slick/slick-theme.css"/>
-    <!-- Main theme stylesheet -->
-    <link href="css/template.css" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #1A237E;  /* CSZ Navy Blue */
+            --secondary-color: #E57373; /* CSZ Coral Red */
+            --accent-color: #FFD700;    /* Gold accent for highlights */
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .site-header {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .site-header.header--scrolled {
+            padding: 10px 0;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            padding: 0;
+        }
+
+        .navbar-brand img {
+            height: 45px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+
+        .header--scrolled .navbar-brand img {
+            height: 40px;
+        }
+
+        .navbar-nav {
+            gap: 1.5rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #1A237E !important;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.5rem 0 !important;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #E57373;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: #E57373 !important;
+        }
+
+        .header-btn {
+            background: #1A237E;
+            color: white !important;
+            padding: 0.6rem 1.5rem !important;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: 2px solid #1A237E;
+        }
+
+        .header-btn:hover {
+            background: #E57373;
+            border-color: #E57373;
+            transform: translateY(-2px);
+        }
+
+        .header-btn::after {
+            display: none;
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 0;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler-icon {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: white;
+                padding: 1rem;
+                border-radius: 10px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                margin-top: 1rem;
+            }
+
+            .navbar-nav {
+                gap: 0.5rem;
+            }
+
+            .nav-link {
+                padding: 0.5rem !important;
+            }
+
+            .header-btn {
+                display: inline-block;
+                margin-top: 0.5rem;
+            }
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .mm__mainMenu {
+            gap: 2rem;
+        }
+
+        .btn--round {
+            border-radius: 30px;
+            padding: 12px 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn--fullblack {
+            background: var(--primary-color);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn--fullblack:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .mm-subheader {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 120px 0 80px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-heading {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #e3f2fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pricing-element {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .pricing-element:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .title--huge {
+            color: var(--accent-color);
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        .mm-iconbox {
+            text-align: center;
+            padding: 30px;
+            background: var(--light-bg);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .mm-iconbox:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .icon-img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .clients {
+            padding: 60px 0;
+        }
+
+        .img-wrapper {
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .img-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .footer {
+            background: #1A237E;
+            padding: 80px 0 40px;
+            color: #fff;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(26, 35, 126, 0.95) 0%, #1A237E 100%);
+            pointer-events: none;
+        }
+
+        .footer .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 30px;
+        }
+
+        .footer-about {
+            grid-column: span 6;
+        }
+
+        .footer-links {
+            grid-column: span 3;
+        }
+
+        .footer-contact {
+            grid-column: span 3;
+        }
+
+        .footer-title {
+            color: #E57373;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-desc {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: #E57373;
+            transform: translateX(5px);
+        }
+
+        .footer-contact-info {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item i {
+            color: #E57373;
+            font-size: 1.2rem;
+            margin-top: 4px;
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin: 5px 0;
+        }
+
+        .developer-credit {
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+
+        .developer-link {
+            color: #E57373;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .developer-link:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-about {
+                grid-column: span 2;
+            }
+            .footer-links, .footer-contact {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            .footer-about, .footer-links, .footer-contact {
+                grid-column: span 1;
+            }
+            .footer {
+                padding: 60px 0 30px;
+            }
+        }
+
+        .totop {
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .totop:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .home-heading {
+                font-size: 2.5rem;
+            }
+
+            .pricing-element {
+                margin-bottom: 30px;
+            }
+        }
+
+        /* Membership section improvements */
+        .membership-section {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+
+        .membership-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .membership-header h2 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .membership-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .pricing-header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .pricing-header h3 {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .price-period {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Institutional Members Section */
+        .institutional-members {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .institutional-members .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .members-logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .member-logo-item {
+            flex: 0 1 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 25px;
+            background: white;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .member-logo-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-logo-item img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 992px) {
+            .members-logo-container {
+                gap: 30px;
+            }
+            .member-logo-item {
+                padding: 10px 20px;
+            }
+            .member-logo-item img {
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .members-logo-container {
+                gap: 20px;
+            }
+            .member-logo-item {
+                padding: 8px 15px;
+            }
+            .member-logo-item img {
+                height: 40px;
+            }
+        }
+    </style>
+    <!-- Add AOS CSS and JS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Initialize AOS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100
+            });
+        });
+    </script>
 	</head>
 
 	<body>
 		<div id="page_wrapper">
-
-				<header id="header" class="site-header header--sticky header--not-sticked site-header--absolute">
-					<div class="site-header-main-wrapper clearfix">
-						<div class="container siteheader-container">
-								<div class="flex-col flex-basis-auto">
-									<div class="flex-row site-header-row site-header-main">
-										<!-- left column - logo -->
-										<div class="flex-col flex flex-start-x flex-center-y flex-basis-auto flex-grow-0 flex-sm-half site-header-col-left">
-											<div class="logo-container">
-													<div class="site-logo">
-															<a href="#" class="site-logo-anch">
-																	<img class="logo-img-sticky site-logo-img-sticky" src="img-assets/csz.png" alt="logo" title="membership">
-																	<img class="logo-img site-logo-img" src="img-assets/csz.png" alt="logo" title="membership">
-															</a>
-													</div>
-											</div>
-										</div>
-										<!-- right column - navigation menu -->
-										<div class="flex-col flex flex-end-x flex-center-y flex-basis-auto flex-sm-half site-header-col-right site-header-main-right">
-												<div class="main-menu-wrapper">
-													<div class="sh-component menu-wrapper">
-
-														 <div class="mm__menuWrapper">
-															 <div class="mm__mainMenu-trigger">
-																 <a href="#" class="mm__menuBurger">
-																	 <span></span>
-																	 <span></span>
-																	 <span></span>
-																 </a>
-															 </div><!--/.mm__mainMenu-trigger-->
-															 <ul class="mm__mainMenu clearfix">
-																 <li><a class="mm__menu-link txt-nav" href=""><span>Check-Membership</span></a></li>
-																 <li><a class="mm__contact active" href="{{ route('login') }}"><span>LOGIN</span></a></li>
-
-															 </ul><!--/.mm__mainMenu-->
-														 </div>
-													</div>
-													<!--sign up button-->
-													<div class="mm__ctaButton sh-component">
-														 <a href="{{ route('register') }}" class="btn btn--round btn--fullblack"><span>Sign up</span></a>
-												 	</div>
-												</div>
-										</div>
-									</div>
-								</div>
+			<header id="header" class="site-header header--sticky">
+				<div class="container">
+					<nav class="navbar navbar-expand-lg">
+						<a class="navbar-brand" href="#">
+							<img src="img-assets/csz.png" alt="CSZ Logo">
+						</a>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+							<ul class="navbar-nav align-items-center">
+								<li class="nav-item">
+									<a class="nav-link" href="{{ route('login') }}">Login</a>
+								</li>
+								<li class="nav-item">
+									<a href="{{ route('register') }}" class="nav-link header-btn">Sign up</a>
+								</li>
+							</ul>
 						</div>
-					</div>
+					</nav>
+				</div>
 			</header>
+
 			<div class="mm-subheader" id="home">
-					<div class="custom-width-container custom-height-container container flex">
-						<div class="row flex-center xs-flex-top">
-									<div class="col-md-12 col-sm-12">
-										<div class="title-block">
-											<h1 class="home-heading">CSZ
-												<br>
-												Membership
-											</h1>
-											<h6 class="home-subheading"> Get access Our Membership Programme </h6>
-										</div>
-									</div>
-							</div>
+				<div class="container">
+					<div class="row min-vh-75 align-items-center">
+						<div class="col-lg-8 col-md-10 mx-auto text-center">
+							<h1 class="home-heading" data-aos="fade-up">CSZ Membership</h1>
+							<p class="home-subheading lead text-white mb-4" data-aos="fade-up" data-aos-delay="100">
+								Get access to our exclusive Membership Programme and join Zimbabwe's premier ICT community
+							</p>
+							<a href="#pricing" class="btn btn--round btn--fullwhite" data-aos="fade-up" data-aos-delay="200">
+								View Memberships
+							</a>
+						</div>
 					</div>
-			</div><!--end subheader-->
-			<!--pricing section-->
-			<section id="pricing" class="pricing-section page-section bg-color--white  pgt-150 pgb-150">
-				<div class="rellax rellax-third" data-rellax-percentage="0.9" style="background-image: url('images/14.jpg');">
 				</div>
-				<div class="container custom_width flex-center">
-					<div class="row">
-						<div class=" col-md-12 col-sm-12 ">
-							<div class="title-block">
-								<h6 class="title--large txt-light txt-center pgb-100">CHOOSE A SUITABLE MEMBERSHIP</h6>
+				<div class="shape-divider">
+					<svg viewBox="0 0 1920 250" xmlns="http://www.w3.org/2000/svg">
+						<path fill="#ffffff" d="M1920 250H0V0s126.707 78.536 349.975 80.05c177.852 1.203 362.805-63.874 553.803-63.874 290.517 0 383.458 57.712 603.992 61.408 220.527 3.696 412.23-61.408 412.23-61.408V250z"/>
+					</svg>
+				</div>
+			</div>
+
+			<section id="features" class="py-5 bg-light">
+				<div class="container">
+					<div class="row g-4">
+						<div class="col-md-6">
+							<div class="mm-iconbox" data-aos="fade-up">
+								<div class="mm-iconbox__icon-wrapper">
+									<i class="fas fa-eye fa-3x text-primary mb-4"></i>
+								</div>
+								<h3 class="h4 mb-3">Our Vision</h3>
+								<p class="mb-0">To be the trusted industry body, anchored on professional knowledge driving the ICT ecosystem in Zimbabwe</p>
 							</div>
 						</div>
-						<!-- start memebrship columns -->
-						<div class="col-md-4 col-sm-4 border-right">
-							<div class="pricing-element">
-								<div class="title-block">
-									<h2 class="title--huge txt-center txt-color"><sup>$</sup>550</h2>
-									<h6 class="subtitle pgb-20 txt-center txt-account">PROFESSIONAL</h6>
+						<div class="col-md-6">
+							<div class="mm-iconbox" data-aos="fade-up" data-aos-delay="100">
+								<div class="mm-iconbox__icon-wrapper">
+									<i class="fas fa-bullseye fa-3x text-primary mb-4"></i>
 								</div>
-								<div class="pricing-description">
-                                    <h3>A person to be elected to the grade of Professional Member shall,
-                                         at the time of application or nomination, satisfy the Membership Moderator that he has, by his attainments, acquired an established reputation as a professional practitioner in the field of Information Processing and meets the following criteria:
-                                    </h3>
-								</div>
-								<div class="txt-center">
-									<a href="{{ route('register') }}" class="btn btn--extralg btn--round btn--fullwhite">sign up</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-4 border-right">
-							<div class="pricing-element">
-								<div class="title-block">
-									<h2 class="title--huge txt-center txt-color"><sup>$</sup>220</h2>
-									<h6 class="subtitle pgb-20 txt-center txt-account">ASSOCIATE</h6>
-								</div>
-								<div class="pricing-description">
-									<h3>A person to be elected to the grade of Associate Member shall, at the time of application or nomination, satisfy the Membership Committee that he meets the following criteria:Is sponsored by two Members of the Society who will be asked to confirm their knowledge of the candidate     </h3>
-								</div>
-								<div class="txt-center">
-									<a href="{{ route('register') }}" class="btn btn--extralg btn--round btn--fullwhite">sign up</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-4 ">
-							<div class="pricing-element">
-								<div class="title-block">
-									<h2 class="title--huge txt-center txt-color"><sup>$</sup>75</h2>
-									<h6 class="subtitle pgb-20 txt-center txt-account">GRADUATE</h6>
-								</div>
-								<div class="pricing-description">
-									<h3>A person to be elected as Graduate Member shall, at the time of application or nomination, satisfy the Membership Committee that he
-                                        : Is sponsored by two Members of the Society who will be asked to confirm their knowledge of the candidate</h3>
-								</div>
-								<div class="txt-center">
-									<a href="{{ route('register') }}" class="btn btn--extralg btn--round btn--fullwhite">sign up</a>
-								</div>
+								<h3 class="h4 mb-3">Our Mission</h3>
+								<p class="mb-0">To champion the development of the ICT industry in Zimbabwe by establishing beneficial relationships and providing independent professional counsel</p>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			<!--icons section-->
-			<section id="services" class="page-section pgt-200 pgb-60 bg-color--white">
-				<div class="container custom_width">
-					<div class="row">
 
-						<div class="col-md-4 col-sm-4 ">
-							<div class="max-width-container">
-								<div class="mm-iconbox mm-iconbox--style2">
-									<div class="mm-iconbox__icon-wrapper">
-										<img src="img-assets/icon1.png" class="img-responsive icon-img" alt title="iconbox">
-									</div>
-									<div class="mm-iconbox__content-wrapper txt-black">
-											<h3 class="txt-nav">Our Vision	</h3>
-											<h5 class="mm-iconbox__desc txt-nav">To be the trusted industry body, anchored on professional knowledge driving the ICT ecosystem in Zimbabwe</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-4 ">
-							<div class="max-width-container">
-								<div class="mm-iconbox mm-iconbox--style2">
-									<div class="mm-iconbox__icon-wrapper">
-										<img src="img-assets/icon4.png" class="img-responsive icon-img" alt title="iconbox">
-									</div>
-									<div class="mm-iconbox__content-wrapper txt-black">
-											<h3 class="txt-nav">Our Mission</h3>
-											<h5 class="mm-iconbox__desc txt-nav">To champion the development of the ICT industry in Zimbabwe by establishing beneficial relationships and providing independent professional counsel for the benefit of members, government, industry and society at large.</h5>
-									</div>
-								</div>
-							</div>
-                        </div>
-						<div class="col-md-4 col-sm-4 ">
-                            <div class="form-group sorting-select">
-                                <input class="select-checkout select-control--sort" placeholder="Enter Full Name" >
-                                <h4 class="txt-nav">Enter Your Name To Check Your Membership</h4>
-                            </div>
-						</div>
-					</div><!--end row-->
-				</div>
+			<section id="pricing" class="membership-section">
+				<div class="container">
+					<div class="membership-header">
+						<h2>Choose Your Membership</h2>
+						<p>Select the membership type that best suits your professional needs and career stage</p>
+					</div>
 
-			</section>
-
-			<section class="facts flex bg-color--white" >
-				<div class="rellax rellax-first" data-rellax-percentage="0.9" style="background-image: url('images/14.jpg');">
-				</div>
-                <div class="container custom_width flex-center">
-					<div class="row">
-						<div class=" col-md-12 col-sm-12 ">
-							<div class="title-block">
-								<h6 class="title--large txt-light txt-center pgb-100">CHOOSE A SUITABLE MEMBERSHIP</h6>
-							</div>
-						</div>
-						<!-- start memebrship columns -->
-						<div class="col-md-4 col-sm-4 border-right">
+					<div class="row g-4">
+						<!-- Professional Membership -->
+						<div class="col-lg-4">
 							<div class="pricing-element">
-								<div class="title-block">
-									<h2 class="title--huge txt-center txt-color"><sup>$</sup>50</h2>
-									<h6 class="subtitle pgb-20 txt-center txt-account">STUDENT</h6>
+								<div class="pricing-header">
+									<h3>Professional</h3>
+									<div class="price-amount">$550</div>
+									<div class="price-period">per year</div>
 								</div>
-								<div class="pricing-description">
-                                    <h3>A person to be elected as Student Member shall, at the time of application or nomination, satisfy the both the Chapter Committee and the Membership Committee that he:
-
-                                        Is a bone fide student registered at a recognized institution for tertiary education and is following an approved course of study leading to a degree, diploma or professional qualification recognized by the Society.</h3>
+								<div class="pricing-features">
+									<ul class="list-unstyled mb-4">
+										<li class="d-flex align-items-center mb-3">
+											<i class="fas fa-check-circle text-success me-2"></i>
+											Established professional reputation
+										</li>
+										<li class="d-flex align-items-center mb-3">
+											<i class="fas fa-check-circle text-success me-2"></i>
+											Access to exclusive events
+										</li>
+										<li class="d-flex align-items-center mb-3">
+											<i class="fas fa-check-circle text-success me-2"></i>
+											Professional development resources
+										</li>
+									</ul>
 								</div>
-								<div class="txt-center">
-									<a href="{{ route('register') }}" class="btn btn--extralg btn--round btn--fullwhite">sign up</a>
-								</div>
+								<a href="{{ route('register') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-4 border-right">
-							<div class="pricing-element">
-								<div class="title-block">
-									<h2 class="title--huge txt-center txt-color"><sup>$</sup>150</h2>
-									<h6 class="subtitle pgb-20 txt-center txt-account">AFFILIATE</h6>
-								</div>
-								<div class="pricing-description">
-									<h3>A person to be elected as an Affiliate Member shall, at the time of application or nomination, satisfy both the Chapter Committee and the Membership Committee that he has a genuine interest in the development and use of computers and in the general aims of the Society.No formal academic qualifications are required for admission to this grade.</h3>
-								</div>
-								<div class="txt-center">
-									<a href="{{ route('register') }}" class="btn btn--extralg btn--round btn--fullwhite">sign up</a>
-								</div>
-							</div>
 
+						<!-- Associate Membership -->
+						<div class="col-lg-4">
+							<div class="pricing-element">
+								<div class="pricing-header">
+									<h3>Associate</h3>
+									<div class="price-amount">$220</div>
+									<div class="price-period">per year</div>
+								</div>
+								<div class="pricing-features">
+									<ul class="list-unstyled mb-4">
+										<li class="d-flex align-items-center mb-3">
+											<i class="fas fa-check-circle text-success me-2"></i>
+											Member sponsorship required
+										</li>
+										<li class="d-flex align-items-center mb-3">
+											<i class="fas fa-check-circle text-success me-2"></i>
+											Networking opportunities
+										</li>
+										<li class="d-flex align-items-center mb-3">
+											<i class="fas fa-check-circle text-success me-2"></i>
+											Industry resources access
+										</li>
+									</ul>
+								</div>
+								<a href="{{ route('register') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+							</div>
 						</div>
-						<div class="col-md-4 col-sm-4 ">
-							<div class="pricing-element">
-								<div class="title-block">
-									<h2 class="title--huge txt-center txt-color"><sup>$</sup>2100</h2>
-									<h6 class="subtitle pgb-20 txt-center txt-account">INSTISTUTIONAL</h6>
-								</div>
-								<div class="pricing-description">
-									<h3>A corporate or non-corporate body or other organization shall be eligible to become an INSTITUTIONAL MEMBER of  the Society provided that:
-                                        It gives such evidence as the Society may require of its interests in the aims of the Society,
-                                        It agrees to abide by the Codes of Ethics of the Society.</h3>
-								</div>
-								<div class="txt-center">
-									<a href="{{ route('register') }}" class="btn btn--extralg btn--round btn--fullwhite">sign up</a>
-								</div>
-							</div>
 
+						<!-- Graduate Membership -->
+						<div class="col-lg-4">
+							<div class="pricing-element">
+								<div class="pricing-header">
+									<h3>Graduate</h3>
+									<div class="price-amount">$75</div>
+									<div class="price-period">per year</div>
+								</div>
+								<div class="pricing-features">
+									<ul class="list-unstyled mb-4">
+										<li class="d-flex align-items-center mb-3">
+											<i class="fas fa-check-circle text-success me-2"></i>
+											Recent graduate benefits
+										</li>
+										<li class="d-flex align-items-center mb-3">
+											<i class="fas fa-check-circle text-success me-2"></i>
+											Career development support
+										</li>
+										<li class="d-flex align-items-center mb-3">
+											<i class="fas fa-check-circle text-success me-2"></i>
+											Mentorship opportunities
+										</li>
+									</ul>
+								</div>
+								<a href="{{ route('register') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+							</div>
+						</div>
+
+						<!-- Student Membership -->
+						<div class="col-lg-4">
+							<div class="pricing-element">
+								<div class="pricing-header">
+									<h3>Student</h3>
+									<div class="price-amount">$50</div>
+									<div class="price-period">per year</div>
+								</div>
+								<div class="pricing-features">
+									<ul class="list-unstyled mb-4">
+										<li class="d-flex align-items-start mb-3">
+											<i class="fas fa-user-graduate text-primary me-2 mt-1"></i>
+											<span>Must be a bone fide student registered at a recognized tertiary institution</span>
+										</li>
+										<li class="d-flex align-items-start mb-3">
+											<i class="fas fa-book text-primary me-2 mt-1"></i>
+											<span>Following an approved course of study (degree, diploma, or professional qualification)</span>
+										</li>
+										<li class="d-flex align-items-start mb-3">
+											<i class="fas fa-check-circle text-primary me-2 mt-1"></i>
+											<span>Requires approval from both Chapter Committee and Membership Committee</span>
+										</li>
+									</ul>
+								</div>
+								<a href="{{ route('register') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+							</div>
+						</div>
+
+						<!-- Affiliate Membership -->
+						<div class="col-lg-4">
+							<div class="pricing-element">
+								<div class="pricing-header">
+									<h3>Affiliate</h3>
+									<div class="price-amount">$150</div>
+									<div class="price-period">per year</div>
+								</div>
+								<div class="pricing-features">
+									<ul class="list-unstyled mb-4">
+										<li class="d-flex align-items-start mb-3">
+											<i class="fas fa-handshake text-primary me-2 mt-1"></i>
+											<span>Genuine interest in computer development and Society's aims</span>
+										</li>
+										<li class="d-flex align-items-start mb-3">
+											<i class="fas fa-certificate text-primary me-2 mt-1"></i>
+											<span>No formal academic qualifications required</span>
+										</li>
+										<li class="d-flex align-items-start mb-3">
+											<i class="fas fa-users text-primary me-2 mt-1"></i>
+											<span>Committee approval based on interest and commitment</span>
+										</li>
+									</ul>
+								</div>
+								<a href="{{ route('register') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+							</div>
+						</div>
+
+						<!-- Institutional Membership -->
+						<div class="col-lg-4">
+							<div class="pricing-element">
+								<div class="pricing-header">
+									<h3>Institutional</h3>
+									<div class="price-amount">$2100</div>
+									<div class="price-period">per year</div>
+								</div>
+								<div class="pricing-features">
+									<ul class="list-unstyled mb-4">
+										<li class="d-flex align-items-start mb-3">
+											<i class="fas fa-building text-primary me-2 mt-1"></i>
+											<span>Open to corporate and non-corporate organizations</span>
+										</li>
+										<li class="d-flex align-items-start mb-3">
+											<i class="fas fa-file-contract text-primary me-2 mt-1"></i>
+											<span>Must demonstrate interest in Society's objectives</span>
+										</li>
+										<li class="d-flex align-items-start mb-3">
+											<i class="fas fa-balance-scale text-primary me-2 mt-1"></i>
+											<span>Agreement to abide by Society's Code of Ethics</span>
+										</li>
+									</ul>
+								</div>
+								<a href="{{ route('register') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			<!--testimonials section-->
-			<section class="bg-color--white testimonial-section">
-				<div class="container custom_width ">
 
-							<div class="clients">
-								<div class="title-block">
-									<h6 class="title--small txt-center txt-nav">Our Institutional Members</h6>
-								</div>
-								<div class="row"><!--start logo row-->
-									<div class="col-md-1-5 col-sm-1-5">
-										<div class="img-wrapper">
-											<img class="image-boxes-img img-responsive" src="images/1.jpg" alt title="client" >
-										</div>
-									</div>
-									<div class="col-md-1-5 col-sm-1-5">
-										<div class="img-wrapper">
-											<img class="image-boxes-img img-responsive" src="images/2.jpg" alt title="client" >
-										</div>
-									</div>
-									<div class="col-md-1-5 col-sm-1-5">
-										<div class="img-wrapper">
-											<img class="image-boxes-img img-responsive" src="images/3.jpg" alt title="client" >
-										</div>
-									</div>
-									<div class="col-md-1-5 col-sm-1-5">
-										<div class="img-wrapper">
-											<img class="image-boxes-img img-responsive" src="images/4.jpg" alt title="client" >
-										</div>
-									</div>
-									<div class="col-md-1-5 col-sm-1-5">
-										<div class="img-wrapper">
-											<img class="image-boxes-img img-responsive" src="images/5.jpg" alt title="client" >
-										</div>
-									</div>
-							</div>
-						</div><!--end clients-->
-				</div>
-			</section>
-			<!--drop us a line section-->
-			<section class="section-drop page-section flex bg-color--dark">
-				<div class="rellax rellax-second " data-rellax-percentage="0.2" style="background-image: url('images/csz.jpeg');">
-				</div>
-
-				<div class="container custom_width container-relax flex-center">
-					<div class="row">
-						<div class="col-md-12 col-sm-12">
-							<div class="title-block ">
-								<h5 class="title--small txt-center txt-account">Get in Touch With Us.</h5>
-								<h6 class="subtitle txt-center txt-account">
-									Whether you’re interested in working with us or for us, we’re always happy to chat.<br>
-									<br>For Inquiries:<span class="txt-color" style="font-family: georgia;font-size: 22px; font-weight: 100;">&nbsp;+263 242 250489/90</span>. </h6>
-
-							</div>
-							<div class="txt-center pgt-10">
-								<a href="#" class="btn btn--extralg btn--round btn--fullwhite">Drop us a line</a>
-							</div>
+			<section class="institutional-members">
+				<div class="container">
+					<h3 class="section-title">Our Institutional Members</h3>
+					<div class="members-logo-container">
+						<div class="member-logo-item">
+							<img src="images/1.jpg" alt="Afrosoft">
+						</div>
+						<div class="member-logo-item">
+							<img src="images/2.jpg" alt="Coat of Arms">
+						</div>
+						<div class="member-logo-item">
+							<img src="images/3.jpg" alt="Public Service Commission">
+						</div>
+						<div class="member-logo-item">
+							<img src="images/4.jpg" alt="PSC Seal">
+						</div>
+						<div class="member-logo-item">
+							<img src="images/5.jpg" alt="TelOne">
 						</div>
 					</div>
 				</div>
 			</section>
-			<!-- Start footer -->
-			<footer class="pgb-100 pgt-160  bg-color--dark">
-				<div class="container custom_width">
-					<div class="row footer_row">
-						<div class="col-md-6 col-sm-6">
-							<div class="footer-desc-cont">
-								<h6 class="txt-light footer-menu-title">
-									CSZ MEMBERSHIP
-								</h6>
-								<h5 class="footer-desc txt-light">
-									The Computer Society of Zimbabwe was founded in 1974 with one objective, that of benefiting the Computer Industry and all people who work in it. The Society’s aims were to educate the general public on the use and development of Electronic Data Processing, today more widely known as Information and Communication Technologies (ICTs).
-                                </h5>
-							</div>
-						</div>
-						<div class=" col-md-2 col-sm-2">
-							<div class="vertical-list">
-								<h5 class="txt-light footer-menu-title">
-									COMPANY
-								</h5>
-								<ul class="vertical-ul">
-									<li>
-										<a href="https://www.csz.org.zw/"><span>Our Blog</span></a>
-									</li>
-									<li>
-										<a href="https://www.instagram.com/p/CGZo3PyMMh3/"><span>Instagram</span></a>
-									</li>
-									<li>
-										<a href="https://www.facebook.com/ComputerSocietyofZimbabwe/"><span>Facebook</span></a>
-									</li>
-									<li>
-										<a href="https://twitter.com/compsocietyzim?lang=en"><span>Twitter</span></a>
-									</li>
-								</ul>
 
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class=" col-md-12 col-sm-12">
-							<p class="copyright">© 2020
-								<a href="lamtrust.github.io">Trust</a>
-								 | ALL RIGHTS RESERVED
+
+			<footer class="footer">
+				<div class="container">
+					<div class="footer-content">
+						<div class="footer-about">
+							<h3 class="footer-title">CSZ Membership</h3>
+							<p class="footer-desc">
+								The Computer Society of Zimbabwe was founded in 1974 with one objective, that of benefiting the Computer Industry and all people who work in it. The Society's aims were to educate the general public on the use and development of Information and Communication Technologies (ICTs).
 							</p>
 						</div>
+
+						<div class="footer-links">
+							<h3 class="footer-title">Quick Links</h3>
+							<ul>
+								<li>
+									<a href="https://www.csz.org.zw/">
+										<i class="fas fa-globe"></i> Our Blog
+									</a>
+								</li>
+								<li>
+									<a href="https://www.instagram.com/p/CGZo3PyMMh3/">
+										<i class="fab fa-instagram"></i> Instagram
+									</a>
+								</li>
+								<li>
+									<a href="https://www.facebook.com/ComputerSocietyofZimbabwe/">
+										<i class="fab fa-facebook"></i> Facebook
+									</a>
+								</li>
+								<li>
+									<a href="https://twitter.com/compsocietyzim">
+										<i class="fab fa-twitter"></i> Twitter
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<div class="footer-contact">
+							<h3 class="footer-title">Contact Us</h3>
+							<div class="footer-contact-info">
+								<div class="contact-item">
+									<i class="fas fa-phone"></i>
+									<span>+263 242 250489/90</span>
+								</div>
+								<div class="contact-item">
+									<i class="fas fa-envelope"></i>
+									<span>info@csz.co.zw</span>
+								</div>
+								<div class="contact-item">
+									<i class="fas fa-map-marker-alt"></i>
+									<span>Harare, Zimbabwe</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="footer-bottom">
+						<p>&copy; {{ date('Y') }} Computer Society of Zimbabwe | All Rights Reserved</p>
+						<p class="developer-credit">
+							Developed by <a href="https://github.com/lamtrust" target="_blank" class="developer-link">Trust Musikiri</a>
+						</p>
 					</div>
 				</div>
-
 			</footer>
-		</div><!-- /.#page_wrapper -->
-		<a href="#" class="totop">TOP</a> <!--/.totop -->
+
+		</div>
+		<a href="#" class="totop">TOP</a>
 
 
 	<script src="js/plugins/jquery-3.2.1.min.js"></script>
 	<script src="js/plugins/bootstrap.min.js"></script>
-	<!--isotope script-->
 	<script src="addons/isotope/isotope.pkgd.min.js"></script>
 		<script src="addons/slick/slick.min.js"></script>
 	<script src="addons/imagesloaded.pkgd.min.js"></script>
 	<script src="addons/rellax-master/rellax.min.js"></script>
-	<!--popup script-->
 	<script src="addons/Magnific-Popup/jquery.magnific-popup.js"></script>
-	<!--count script-->
 	<script src="addons/jquery.countTo.js"></script>
 	<script src="addons/jquery.smooth-scroll.min.js"></script>
-	<!-- Main template script -->
 	<script src="js/script.js"></script>
+
+	<!-- Add JavaScript for header scroll effect -->
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const header = document.querySelector('.site-header');
+
+			window.addEventListener('scroll', () => {
+				if (window.scrollY > 50) {
+					header.classList.add('header--scrolled');
+				} else {
+					header.classList.remove('header--scrolled');
+				}
+			});
+		});
+	</script>
 
 	</body>
 
-<!-- Mirrored from demos.hogash.com/membership_html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Nov 2020 08:29:32 GMT -->
+
 </html>
