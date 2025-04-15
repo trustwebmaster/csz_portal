@@ -604,7 +604,7 @@
 							</ul>
 						</div>
 					</nav>
-				</div>
+					</div>
 			</header>
 
 			<div class="mm-subheader" id="home">
@@ -618,15 +618,15 @@
 							<a href="#pricing" class="btn btn--round btn--fullwhite" data-aos="fade-up" data-aos-delay="200">
 								View Memberships
 							</a>
-						</div>
+							</div>
 					</div>
 				</div>
 				<div class="shape-divider">
 					<svg viewBox="0 0 1920 250" xmlns="http://www.w3.org/2000/svg">
 						<path fill="#ffffff" d="M1920 250H0V0s126.707 78.536 349.975 80.05c177.852 1.203 362.805-63.874 553.803-63.874 290.517 0 383.458 57.712 603.992 61.408 220.527 3.696 412.23-61.408 412.23-61.408V250z"/>
 					</svg>
-				</div>
-			</div>
+							</div>
+						</div>
 
 			<section id="features" class="py-5 bg-light">
 				<div class="container">
@@ -658,7 +658,7 @@
 					<div class="membership-header">
 						<h2>Choose Your Membership</h2>
 						<p>Select the membership type that best suits your professional needs and career stage</p>
-					</div>
+									</div>
 
 					<div class="row g-4">
 						<!-- Professional Membership -->
@@ -668,7 +668,7 @@
 									<h3>Professional</h3>
 									<div class="price-amount">$550</div>
 									<div class="price-period">per year</div>
-								</div>
+									</div>
 								<div class="pricing-features">
 									<ul class="list-unstyled mb-4">
 										<li class="d-flex align-items-center mb-3">
@@ -696,7 +696,7 @@
 									<h3>Associate</h3>
 									<div class="price-amount">$220</div>
 									<div class="price-period">per year</div>
-								</div>
+									</div>
 								<div class="pricing-features">
 									<ul class="list-unstyled mb-4">
 										<li class="d-flex align-items-center mb-3">
@@ -714,7 +714,7 @@
 									</ul>
 								</div>
 								<a href="{{ route('register') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
-							</div>
+                            </div>
 						</div>
 
 						<!-- Graduate Membership -->
@@ -724,7 +724,7 @@
 									<h3>Graduate</h3>
 									<div class="price-amount">$75</div>
 									<div class="price-period">per year</div>
-								</div>
+				</div>
 								<div class="pricing-features">
 									<ul class="list-unstyled mb-4">
 										<li class="d-flex align-items-center mb-3">
@@ -740,7 +740,7 @@
 											Mentorship opportunities
 										</li>
 									</ul>
-								</div>
+				</div>
 								<a href="{{ route('register') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
 							</div>
 						</div>
@@ -838,16 +838,16 @@
 					<div class="members-logo-container">
 						<div class="member-logo-item">
 							<img src="images/1.jpg" alt="Afrosoft">
-						</div>
+								</div>
 						<div class="member-logo-item">
 							<img src="images/2.jpg" alt="Coat of Arms">
-						</div>
+										</div>
 						<div class="member-logo-item">
 							<img src="images/3.jpg" alt="Public Service Commission">
-						</div>
+									</div>
 						<div class="member-logo-item">
 							<img src="images/4.jpg" alt="PSC Seal">
-						</div>
+										</div>
 						<div class="member-logo-item">
 							<img src="images/5.jpg" alt="TelOne">
 						</div>
@@ -873,23 +873,23 @@
 									<a href="https://www.csz.org.zw/">
 										<i class="fas fa-globe"></i> Our Blog
 									</a>
-								</li>
-								<li>
+									</li>
+									<li>
 									<a href="https://www.instagram.com/p/CGZo3PyMMh3/">
 										<i class="fab fa-instagram"></i> Instagram
 									</a>
-								</li>
-								<li>
+									</li>
+									<li>
 									<a href="https://www.facebook.com/ComputerSocietyofZimbabwe/">
 										<i class="fab fa-facebook"></i> Facebook
 									</a>
-								</li>
-								<li>
+									</li>
+									<li>
 									<a href="https://twitter.com/compsocietyzim">
 										<i class="fab fa-twitter"></i> Twitter
 									</a>
-								</li>
-							</ul>
+									</li>
+								</ul>
 						</div>
 
 						<div class="footer-contact">
