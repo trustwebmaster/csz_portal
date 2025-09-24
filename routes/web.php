@@ -26,7 +26,7 @@ Route::get('/poll' , 'PaynowController@poll')->name('poll');
 // {
 //      return $student->name;
 // });
-//route model binding 
+//route model binding
 
 
 Auth::routes();
@@ -37,9 +37,9 @@ Route::get('member_dashboard' , 'ClientController@index')->name('member-dashboar
 Route::post('member_verify', 'ClientController@member')->name('email-verification');
 Route::get('member_profile', 'ClientController@profile');
 Route::get('admin_dashboard', 'ClientController@admin');
-Route::get('member_verified_graduate', 'ClientController@graduate');
-Route::get('member_verified', 'ClientController@student')->name('student-registration');
-Route::get('member_verified_professional', 'ClientController@professional');
+Route::get('registration/graduate', 'ClientController@graduate')->name('graduate-registration');
+Route::get('registration/student', 'ClientController@student')->name('student-registration');
+Route::get('registration/professional', 'ClientController@professional')->name('professional-registration');
 Route::get('membership', 'ClientController@membership');
 Route::get('verification' , 'ClientController@verify')->name('custom-verify');
 Route::post('/editmember' , 'ClientController@editmember')->name('edit-member');

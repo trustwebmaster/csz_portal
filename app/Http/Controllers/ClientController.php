@@ -48,28 +48,7 @@ class ClientController extends Controller
 
     public function student(){
 
-        return view('member.proffesional');
-
-
-    //     if(session()->has('verify') ){
-
-    //         if(session('membership')['membership'] == "STUDENT"){
-    //             return view('member.verify');
-    //         }
-
-    //         elseif(session('membership')['membership'] == "GRADUATE"){
-    //             return view('member.graduate');
-    //         }
-
-    //         elseif(session('membership')['membership'] == "PROFESSIONAL"){
-    //             return view('member.proffesional');
-    //         }
-
-    //     }
-
-    //    else{
-    //      return redirect(route('email-verification'));
-    //   }
+        return view('member.verify');
     }
 
 
