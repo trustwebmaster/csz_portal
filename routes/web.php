@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Voyager as VoyagerVoyager;
 
@@ -18,24 +19,57 @@ Route::get('/', function(){
     return view('welcome');
 });
 
-Route::get('/..', 'MembersController@index');
-
 Route::post('/paynow' , 'PaynowController@initialise')->name('initialise');
 Route::get('/poll' , 'PaynowController@poll')->name('poll');
-// Route::get('students/{student}', function(App\StudentMember $student)
-// {
-//      return $student->name;
-// });
-//route model binding
 
 
 Auth::routes();
 
+//Route::group(['middleware' => 'auth'] , function () {
+//    Route::group(['middleware' =>  'user'] , function () {
+//        Route::get('member_dashboard' , 'MembersController@index')->name('member-dashboard');
+//        Route::get('member_profile', 'MembersController@profile');
+//        Route::get('membership', 'MembersController@membership');
+//        Route::post('/editmember' , 'MembersController@editmember')->name('edit-member');
+//        Route::get('/user/membership-renewal' , 'MembersController@membershipRenewal')->name('user.membership-renewal');
+//        Route::get('/user/cpd-events' , 'MembersController@cpdEvents')->name('user.cpd-events');
+//        Route::get('/user/cpd-points' , 'MembersController@cpdPoints')->name('user.cpd-points');
+//        Route::get('/user/profile' , 'MembersController@userProfile')->name('user.profile');
+//    });
+//});
 
-Route::resource('members', 'MembersController');
-Route::get('member_dashboard' , 'ClientController@index')->name('member-dashboard');
+Route::get('member_dashboard' , 'MembersController@index')->name('member-dashboard');
+Route::get('member_profile', 'MembersController@profile');
+Route::get('membership', 'MembersController@membership');
+Route::post('/editmember' , 'MembersController@editmember')->name('edit-member');
+Route::get('/user/membership-renewal' , 'MembersController@membershipRenewal')->name('user.membership-renewal');
+Route::get('/user/cpd-events' , 'MembersController@cpdEvents')->name('user.cpd-events');
+Route::get('/user/cpd-points' , 'MembersController@cpdPoints')->name('user.cpd-points');
+Route::get('/user/profile' , 'MembersController@userProfile')->name('user.profile');
+
+Route::group(['middleware' => 'auth'] , function () {
+    Route::group(['middleware' =>  'admin'] , function () {
+     Route::get('/admin' , 'AdminController@index')->name('admin');
+     Route::get('/admin/pending-approvals' , 'AdminController@pendingApprovals')->name('admin.pending-approvals');
+     Route::get('/admin/pending-approvals/show/{user}' , 'AdminController@pendingApprovalsShow')->name('admin.pending-approvals.show');
+     Route::get('/admin/member/school-id/{member}' , 'AdminController@schoolID')->name('member-school');
+     Route::get('/admin/membe/national-id/{member}' , 'AdminController@nationalID')->name('member-national');
+     Route::get('/approve-member/{member}' , 'AdminController@approve_member')->name('accept-member');
+     Route::get('/decline-member/{member}' , 'AdminController@decline_member')->name('decline-member');
+     Route::post('/member-approval/{member}' , 'AdminController@approval')->name('member-approval');
+     Route::get('/admin/reports/show' , 'AdminController@reportShow')->name('admin.report.show');
+     Route::get('/admin/students' , 'AdminController@students')->name('students');
+     Route::get('/admin/professional' , 'AdminController@professional')->name('professional');
+     Route::get('/admin/companies' , 'AdminController@company')->name('company');
+    Route::get('/admin/cpd-points' , 'AdminController@cpdPoints')->name('admin.cpd-points');
+    Route::get('/admin/cpd-points/show' , 'AdminController@cpdPointsShow')->name('admin.cpd-points.show');
+
+
+    });
+});
+
+
 Route::post('member_verify', 'ClientController@member')->name('email-verification');
-Route::get('member_profile', 'ClientController@profile');
 Route::get('admin_dashboard', 'ClientController@admin');
 Route::get('registration/graduate', 'ClientController@graduate')->name('graduate-registration');
 Route::get('registration/student', 'ClientController@student')->name('student-registration');
@@ -43,19 +77,8 @@ Route::get('registration/professional', 'ClientController@professional')->name('
 Route::get('registration/associate', 'ClientController@associate')->name('associate-registration');
 Route::get('registration/affiliate', 'ClientController@affiliate')->name('affiliate-registration');
 Route::get('registration/institutional', 'ClientController@institutional')->name('institutional-registration');
-Route::get('membership', 'ClientController@membership');
 Route::get('membership-selection', 'ClientController@membershipSelection')->name('membership-selection');
 Route::get('verification' , 'ClientController@verify')->name('custom-verify');
-Route::post('/editmember' , 'ClientController@editmember')->name('edit-member');
 
 
-Route::get('/reports', 'MembersController@reportsIndex')->name('reports');
-Route::post('/reports', 'MembersController@viewReport')->name('view reports');
 
-Route::get('/add', function(){
-    return view('admin.memberForm');
-});
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
