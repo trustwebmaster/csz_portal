@@ -76,8 +76,24 @@ class AdminController extends Controller
     {
         return view('admin.cpd-points');
     }
+
     public function cpdPointsShow()
     {
         return view('admin.cpd-points-show');
+    }
+
+    public function cpdMemberRecords()
+    {
+        return view('admin.cpd-member-records');
+    }
+
+    public function cpdReports()
+    {
+        return view('admin.cpd-reports');
+    }
+
+    public function cpdSettings()
+    {
+        return view('admin.cpd-settings');
     }
 }
