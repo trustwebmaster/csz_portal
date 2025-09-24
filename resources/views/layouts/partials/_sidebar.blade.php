@@ -56,12 +56,33 @@
                     </a>
                 </li>
 
-                <li class="menu-title" key="t-menu">CPD</li>
+                <li class="menu-title" key="t-menu">CPD Management</li>
 
                 <li>
                     <a href="{{ route('admin.cpd-points') }}" class="waves-effect">
-                        <i class="bx bx-check-shield"></i>
-                        <span>CPD Points</span>
+                        <i class="bx bx-tachometer"></i>
+                        <span>CPD Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('admin.cpd-member-records') }}" class="waves-effect">
+                        <i class="bx bx-user-check"></i>
+                        <span>Member Records</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('admin.cpd-reports') }}" class="waves-effect">
+                        <i class="bx bx-bar-chart-alt-2"></i>
+                        <span>Reports & Analytics</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('admin.cpd-settings') }}" class="waves-effect">
+                        <i class="bx bx-cog"></i>
+                        <span>CPD Settings</span>
                     </a>
                 </li>
 
