@@ -71,9 +71,13 @@ Route::group(['middleware' => 'auth'] , function () {
 
 Route::post('member_verify', 'ClientController@member')->name('email-verification');
 Route::get('admin_dashboard', 'ClientController@admin');
-Route::get('member_verified_graduate', 'ClientController@graduate');
-Route::get('member_verified', 'ClientController@student')->name('student-registration');
-Route::get('member_verified_professional', 'ClientController@professional');
+Route::get('registration/graduate', 'ClientController@graduate')->name('graduate-registration');
+Route::get('registration/student', 'ClientController@student')->name('student-registration');
+Route::get('registration/professional', 'ClientController@professional')->name('professional-registration');
+Route::get('registration/associate', 'ClientController@associate')->name('associate-registration');
+Route::get('registration/affiliate', 'ClientController@affiliate')->name('affiliate-registration');
+Route::get('registration/institutional', 'ClientController@institutional')->name('institutional-registration');
+Route::get('membership-selection', 'ClientController@membershipSelection')->name('membership-selection');
 Route::get('verification' , 'ClientController@verify')->name('custom-verify');
 
 
