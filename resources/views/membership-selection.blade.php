@@ -98,7 +98,7 @@
                             <a class="nav-link" href="{{ route('login') }}">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('register') }}" class="nav-link header-btn">Register</a>
+                            <a href="#" class="nav-link header-btn">Register</a>
                         </li>
                     </ul>
                 </div>
@@ -122,7 +122,7 @@
                 <div class="card h-100 shadow-lg border-0 membership-card">
                     <div class="card-header bg-primary text-white text-center py-3">
                         <h3 class="mb-0">Professional</h3>
-                        <div class="price-amount h2 mb-0 mt-2">$250</div>
+                            <div class="price-amount h2 mb-0 mt-2">$550</div>
                         <small class="opacity-75">per year</small>
                     </div>
                     <div class="card-body d-flex flex-column">
@@ -164,7 +164,7 @@
                 <div class="card h-100 shadow-lg border-0 membership-card">
                     <div class="card-header bg-info text-white text-center py-3">
                         <h3 class="mb-0">Graduate</h3>
-                        <div class="price-amount h2 mb-0 mt-2">$150</div>
+                        <div class="price-amount h2 mb-0 mt-2">$250</div>
                         <small class="opacity-75">per year</small>
                     </div>
                     <div class="card-body d-flex flex-column">
@@ -254,7 +254,7 @@
                 <div class="card h-100 shadow-lg border-0 membership-card">
                     <div class="card-header bg-warning text-dark text-center py-3">
                         <h3 class="mb-0">Associate</h3>
-                        <div class="price-amount h2 mb-0 mt-2">$200</div>
+                        <div class="price-amount h2 mb-0 mt-2">$220</div>
                         <small class="opacity-75">per year</small>
                     </div>
                     <div class="card-body d-flex flex-column">
@@ -279,7 +279,7 @@
                             </ul>
                         </div>
                         <div class="mt-auto">
-                            <a href="{{ route('register') }}" class="btn btn-warning btn-lg w-100 text-dark">
+                            <a href="{{ route('associate-registration') }}" class="btn btn-warning btn-lg w-100 text-dark">
                                 <i class="fas fa-arrow-right me-2"></i>Apply Now
                             </a>
                         </div>
@@ -292,7 +292,7 @@
                 <div class="card h-100 shadow-lg border-0 membership-card">
                     <div class="card-header bg-secondary text-white text-center py-3">
                         <h3 class="mb-0">Affiliate</h3>
-                        <div class="price-amount h2 mb-0 mt-2">$100</div>
+                        <div class="price-amount h2 mb-0 mt-2">$300</div>
                         <small class="opacity-75">per year</small>
                     </div>
                     <div class="card-body d-flex flex-column">
@@ -317,7 +317,7 @@
                             </ul>
                         </div>
                         <div class="mt-auto">
-                            <a href="{{ route('register') }}" class="btn btn-secondary btn-lg w-100">
+                            <a href="{{ route('affiliate-registration') }}" class="btn btn-secondary btn-lg w-100">
                                 <i class="fas fa-arrow-right me-2"></i>Apply Now
                             </a>
                         </div>
@@ -330,7 +330,7 @@
                 <div class="card h-100 shadow-lg border-0 membership-card">
                     <div class="card-header bg-dark text-white text-center py-3">
                         <h3 class="mb-0">Institutional</h3>
-                        <div class="price-amount h2 mb-0 mt-2">$500</div>
+                        <div class="price-amount h2 mb-0 mt-2">$2100</div>
                         <small class="opacity-75">per year</small>
                     </div>
                     <div class="card-body d-flex flex-column">
@@ -355,7 +355,7 @@
                             </ul>
                         </div>
                         <div class="mt-auto">
-                            <a href="{{ route('register') }}" class="btn btn-dark btn-lg w-100">
+                                <a href="{{ route('institutional-registration') }}" class="btn btn-dark btn-lg w-100">
                                 <i class="fas fa-arrow-right me-2"></i>Apply Now
                             </a>
                         </div>

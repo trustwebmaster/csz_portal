@@ -685,7 +685,7 @@
 										</li>
 									</ul>
 								</div>
-								<a href="{{ route('membership-selection') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+								<a href="{{ route('professional-registration') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
 							</div>
 						</div>
 
@@ -713,7 +713,7 @@
 										</li>
 									</ul>
 								</div>
-								<a href="{{ route('membership-selection') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+								<a href="{{ route('associate-registration') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
                             </div>
 						</div>
 
@@ -741,7 +741,7 @@
 										</li>
 									</ul>
 				</div>
-								<a href="{{ route('membership-selection') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+								<a href="{{ route('graduate-registration') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
 							</div>
 						</div>
 
@@ -769,7 +769,7 @@
 										</li>
 									</ul>
 								</div>
-								<a href="{{ route('membership-selection') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+								<a href="{{ route('student-registration') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
 							</div>
 						</div>
 
@@ -797,7 +797,7 @@
 										</li>
 									</ul>
 								</div>
-								<a href="{{ route('membership-selection') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+								<a href="{{ route('affiliate-registration') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
 							</div>
 						</div>
 
@@ -825,7 +825,7 @@
 										</li>
 									</ul>
 								</div>
-								<a href="{{ route('membership-selection') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+								<a href="{{ route('institutional-registration') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
 							</div>
 						</div>
 					</div>

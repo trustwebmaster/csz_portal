@@ -693,7 +693,7 @@
         <div class="card">
             <div class="card-header text-center">
                 <div class="logo-container">
-                    <img src="img-assets/csz.png" alt="CSZ Logo">
+                    <img src="{{ asset('img-assets/csz.png') }}" alt="CSZ Logo">
                 </div>
                 <h4 class="mb-0">Student Membership Registration</h4>
                 <p class="mb-0 mt-2 opacity-75">Join the Computer Society of Zimbabwe and advance your career</p>
