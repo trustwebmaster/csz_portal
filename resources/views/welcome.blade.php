@@ -599,7 +599,7 @@
 									<a class="nav-link" href="{{ route('login') }}">Login</a>
 								</li>
 								<li class="nav-item">
-									<a href="{{ route('register') }}" class="nav-link header-btn">Sign up</a>
+									<a href="{{ route('membership-selection') }}" class="nav-link header-btn">Sign up</a>
 								</li>
 							</ul>
 						</div>
@@ -685,7 +685,7 @@
 										</li>
 									</ul>
 								</div>
-								<a href="{{ route('register') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+								<a href="{{ route('membership-selection') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
 							</div>
 						</div>
 
@@ -713,7 +713,7 @@
 										</li>
 									</ul>
 								</div>
-								<a href="{{ route('register') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+								<a href="{{ route('membership-selection') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
                             </div>
 						</div>
 
@@ -741,7 +741,7 @@
 										</li>
 									</ul>
 				</div>
-								<a href="{{ route('register') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+								<a href="{{ route('membership-selection') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
 							</div>
 						</div>
 
@@ -769,7 +769,7 @@
 										</li>
 									</ul>
 								</div>
-								<a href="{{ route('register') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+								<a href="{{ route('membership-selection') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
 							</div>
 						</div>
 
@@ -797,7 +797,7 @@
 										</li>
 									</ul>
 								</div>
-								<a href="{{ route('register') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+								<a href="{{ route('membership-selection') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
 							</div>
 						</div>
 
@@ -825,7 +825,7 @@
 										</li>
 									</ul>
 								</div>
-								<a href="{{ route('register') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
+								<a href="{{ route('membership-selection') }}" class="btn btn--round btn--fullblack w-100">Join Now</a>
 							</div>
 						</div>
 					</div>

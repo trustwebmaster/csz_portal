@@ -87,6 +87,11 @@ class ClientController extends Controller
         return view('member.membership');
     }
 
+    public function membershipSelection()
+    {
+        return view('membership-selection');
+    }
+
     public function editmember(Request $request){
 
         if($request->has('contact')){

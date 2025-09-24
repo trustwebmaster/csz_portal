@@ -41,6 +41,7 @@ Route::get('registration/graduate', 'ClientController@graduate')->name('graduate
 Route::get('registration/student', 'ClientController@student')->name('student-registration');
 Route::get('registration/professional', 'ClientController@professional')->name('professional-registration');
 Route::get('membership', 'ClientController@membership');
+Route::get('membership-selection', 'ClientController@membershipSelection')->name('membership-selection');
 Route::get('verification' , 'ClientController@verify')->name('custom-verify');
 Route::post('/editmember' , 'ClientController@editmember')->name('edit-member');
 
