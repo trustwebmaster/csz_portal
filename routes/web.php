@@ -25,27 +25,28 @@ Route::get('/poll' , 'PaynowController@poll')->name('poll');
 
 Auth::routes();
 
-//Route::group(['middleware' => 'auth'] , function () {
-//    Route::group(['middleware' =>  'user'] , function () {
-//        Route::get('member_dashboard' , 'MembersController@index')->name('member-dashboard');
-//        Route::get('member_profile', 'MembersController@profile');
-//        Route::get('membership', 'MembersController@membership');
-//        Route::post('/editmember' , 'MembersController@editmember')->name('edit-member');
-//        Route::get('/user/membership-renewal' , 'MembersController@membershipRenewal')->name('user.membership-renewal');
-//        Route::get('/user/cpd-events' , 'MembersController@cpdEvents')->name('user.cpd-events');
-//        Route::get('/user/cpd-points' , 'MembersController@cpdPoints')->name('user.cpd-points');
-//        Route::get('/user/profile' , 'MembersController@userProfile')->name('user.profile');
-//    });
-//});
+Route::group(['middleware' => 'auth'] , function () {
+   Route::group(['middleware' =>  'user'] , function () {
+       Route::get('member_dashboard' , 'MembersController@index')->name('member-dashboard');
+       Route::get('member_profile', 'MembersController@profile');
+       Route::get('membership', 'MembersController@membership');
+       Route::post('/editmember' , 'MembersController@editmember')->name('edit-member');
+       Route::get('/user/membership-renewal' , 'MembersController@membershipRenewal')->name('user.membership-renewal');
+        Route::get('/user/cpd-events' , 'MembersController@cpdEvents')->name('user.cpd-events');
+        Route::get('/user/cpd-points' , 'MembersController@cpdPoints')->name('user.cpd-points');
+        Route::post('/user/cpd-submit' , 'MembersController@submitCpdActivity')->name('user.cpd-submit');
+        Route::get('/user/profile' , 'MembersController@userProfile')->name('user.profile');
+   });
+});
 
-Route::get('member_dashboard' , 'MembersController@index')->name('member-dashboard');
-Route::get('member_profile', 'MembersController@profile');
-Route::get('membership', 'MembersController@membership');
-Route::post('/editmember' , 'MembersController@editmember')->name('edit-member');
-Route::get('/user/membership-renewal' , 'MembersController@membershipRenewal')->name('user.membership-renewal');
-Route::get('/user/cpd-events' , 'MembersController@cpdEvents')->name('user.cpd-events');
-Route::get('/user/cpd-points' , 'MembersController@cpdPoints')->name('user.cpd-points');
-Route::get('/user/profile' , 'MembersController@userProfile')->name('user.profile');
+// Route::get('member_dashboard' , 'MembersController@index')->name('member-dashboard');
+// Route::get('member_profile', 'MembersController@profile');
+// Route::get('membership', 'MembersController@membership');
+// Route::post('/editmember' , 'MembersController@editmember')->name('edit-member');
+// Route::get('/user/membership-renewal' , 'MembersController@membershipRenewal')->name('user.membership-renewal');
+// Route::get('/user/cpd-events' , 'MembersController@cpdEvents')->name('user.cpd-events');
+// Route::get('/user/cpd-points' , 'MembersController@cpdPoints')->name('user.cpd-points');
+// Route::get('/user/profile' , 'MembersController@userProfile')->name('user.profile');
 
 Route::group(['middleware' => 'auth'] , function () {
     Route::group(['middleware' =>  'admin'] , function () {
