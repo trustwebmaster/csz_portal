@@ -1,8 +1,9 @@
 <?php
 namespace App\Http\Controllers;
-use App\Models\Order;
+use App\Order;
 use App\StudentMember;
 use App\User;
+use Carbon\Carbon;
 use Exception;
 
 use Paynow\Payments\Paynow;
@@ -14,6 +15,7 @@ use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -34,64 +36,66 @@ class PaynowController extends Controller
     }
 
     public function initialise(Request $request)
-    {  
+    {
         $path = '/public/Student Documents';
         $filename1 = 'Student-'.\request('surname'). '-' .\request()->file('national_id')->getClientOriginalExtension();
         request()->file('national_id')->storeAs($path ,$filename1);
         $filename2 = 'Member'.\request('surname'). '-' .\request()->file('school_id')->getClientOriginalExtension();
         request()->file('school_id')->storeAs($path ,$filename2);
-        $national_id = Storage::disk('local')->getAdapter()->applyPathPrefix($path.'/'.$filename1);
-        $school_id = Storage::disk('local')->getAdapter()->applyPathPrefix($path.'/'.$filename2);
+        $national_id = Storage::path($path.'/'.$filename1);
+        $school_id = Storage::path($path.'/'.$filename2);
 
 
         $member = StudentMember::Create([
           'chapter'  => $request->chapter,
-          'email' => session('membership')['email'],
-          'interest_group' => $request->interest_group,
-          'firstname' => $request->name,
+          'email' => $request->email,
+          'interest_group' => implode(",",$request->interest_groups),
+          'firstname' => $request->name ?? $request->firstname,
           'surname' => $request->surname,
-          'number' => $request->phonenumber,
+          'number' => $request->phonenumber ?? $request->number,
           'password' =>Hash::make($request->password),
-          'school_name' => $request->current_school,
+          'school_name' => ($request->current_school ?? $request->graduating_school)?? $request->company_name,
           'date_of_birth' => $request->date_of_birth,
           'address' => $request->address,
-          'current_year' => $request->current_year,
+          'current_year' => $request->current_year ?? Carbon::now()->year,
           'notes' => $request->notes,
           'school_id' => $school_id,
           'national_id' => $national_id,
         ]);
 
-    
+        session(['membership' =>  $member]);
+
         $user = User::UpdateOrCreate([
             'name' => $member->firstname . $member->surname,
             'email' => $member->email,
             'password' =>$member->password,
+            'role' => 'user',
         ]);
 
-  
+
         $order =  Order::Create([
             'price' => $request->amount,
-            'email' => session('membership')['email'],
+            'email' => $request->email,
             'phone' => $request->ecocash_number,
         ]);
 
 
         $email = $order->email;
         // $email = "h180376n@hit.ac.zw";
-        $phone_number = $order->phone;
+        $phone_number = "07".$order->phone;
         $amount = floatval($order->price);
 
         $payment = $this->paynow->createPayment(
             $order->id,
-            $email,
+        env('PAYNOW_AUTH_EMAIL',$email),
         );
-        
+
 
         $payment->add(
-            env('APP_NAME'),
+            "Membership Fee",
             $amount
         );
-        
+
 
         try {
             $response = $this->paynow->sendMobile(
@@ -109,7 +113,7 @@ class PaynowController extends Controller
                 ]);
             }
 
-            $order->poll_url = $response->pollUrl();  
+            $order->poll_url = $response->pollUrl();
             $order->save();
 
             // Return the response
@@ -122,11 +126,11 @@ class PaynowController extends Controller
             $newTransaction = json_decode($transaction->content(), true);
 
             // dd($newTransaction['transaction']['id']);
-            
+
             return view('paynow.index', ['newTransaction' => $newTransaction , 'phone_number' => $phone_number]);
-            
-        } 
-        
+
+        }
+
         catch (ConnectionException $e) {
             logger()->error("Failed to connect to Paynow\n" . $e->getTraceAsString());
         } catch (HashMismatchException $e) {
@@ -144,16 +148,16 @@ class PaynowController extends Controller
     }
 
     public function poll(Request $request)
-    {  
+    {
         $this->validate($request, [
             'transaction' => 'exists:orders,id'
         ]);
 
         // Find a transaction matching the given transaction id
         $transaction = Order::findOrFail($request->input('transaction'));
-        $member = StudentMember::where('email' ,  session('membership')['email'])->first();
-        $user =  User::where('email' ,  session('membership')['email'])->first();
-        
+        $member = StudentMember::where('email' ,  $transaction->email)->first();
+        $user =  User::where('email' ,  $transaction->email)->first();
+
 
         try {
             // Try to poll the transaction
@@ -164,7 +168,8 @@ class PaynowController extends Controller
             // return response()->json([
             // 'status' => $status->paid() ? 'Paid' : 'Awaiting payment'
             // ]);
-            if ($status->paid()) {
+            Log::info('Payment Status: ' . $status->status());
+            if ($status->status() == "paid" || $status->status() == "awaiting delivery" ) {
                 $transaction->update(['ISpaid' => true]);
                Alert::success('Payment Successfully' , 'Thank You for making payment');
                 return response()->json([
@@ -176,16 +181,16 @@ class PaynowController extends Controller
             }
 
             else{
-                $member->delete();
-                $user->delete();
-            Alert::error('Error Occured' , 'An error occured whilst processing the transaction');    
+                // $member?->delete();
+                // $user?->delete();
+            Alert::error('Error Occured' , 'An error occured whilst processing the transaction');
             return response()->json([
                 'status' => 'error',
                 'message' => 'An error occurred while polling transaction'
             ]);
            }
         }
-        catch (Exception $e) {            
+        catch (Exception $e) {
             logger()->error($e->getMessage() . "\t\t" . $e->getTraceAsString());
         }
     }

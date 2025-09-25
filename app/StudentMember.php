@@ -14,8 +14,8 @@ class StudentMember extends Model
 
       public function getEmailAttribute($email)
       {
-      return 'Chibaba ' . $email;
-      } 
+      return $email;
+      }
 
       public function setChapterAttribute($value)
      {

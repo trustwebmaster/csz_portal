@@ -1039,7 +1039,7 @@
                         <!-- Payment Tab -->
                         <div class="tab-pane fade scale-in" id="payment">
                             <div class="payment-section">
-                                <img src="images/paynow.svg" alt="PayNow" class="payment-logo">
+                                <img src="{{asset("images/paynow.svg")}}" alt="PayNow" class="payment-logo">
 
                                 <div class="row justify-content-center">
                                     <div class="col-md-8">
