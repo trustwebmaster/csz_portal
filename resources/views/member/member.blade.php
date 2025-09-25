@@ -103,7 +103,7 @@
                                                             <h4 class="text-muted">Current School</h4>
                                                             <h4 class="text-muted">Current Year</h4>
                                                             <h4 class="text-muted">Interests Group</h4>
-                                                            <h4 class="text-muted">Reason For Joining CSZ</h4>                                                       
+                                                            <h4 class="text-muted">Reason For Joining CSZ</h4>
                                                         </div>
 
                                                             <div class="col-md-6">
@@ -365,7 +365,7 @@
         </div>
     </div>
     <!-- /Edit dependants Modal -->
-  
+
     <!-- Edit member Qualifications Modal -->
     <div id="edit_member_documents" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -515,7 +515,7 @@
         }
 
     </SCRIPT>
- 
+
 @endsection
 
 @section('modals')

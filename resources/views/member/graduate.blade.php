@@ -1,1298 +1,194 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<!-- Mirrored from coderthemes.com/adminto/layouts/vertical/form-wizard.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Dec 2020 09:17:28 GMT -->
-<head>
-        <meta charset="utf-8" />
-        <title>CSZ Membership | Graduate Membership</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Computer Society of Zimbabwe - Graduate Membership Registration" name="description" />
-        <meta content="CSZ" name="author" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset('img-assets/favicon.ico') }}">
-        <link href="{{ ('Adminto/assets/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" rel="stylesheet">
-        <link href="{{ ('Adminto/assets/libs/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
-        <link href="{{ ('Adminto/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet" />
-        <!-- Bootstrap Css -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Icons Css -->
-        <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css" rel="stylesheet">
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <!-- Custom Css -->
-        <style>
-            :root {
-                --primary-color: #1A237E;
-                --secondary-color: #E57373;
-                --accent-color: #FFD700;
-                --text-color: #333;
-                --light-bg: #f8f9fa;
-                --success-color: #4CAF50;
-                --warning-color: #FFC107;
-                --error-color: #F44336;
-            }
-
-            body {
-                font-family: 'Poppins', sans-serif;
-                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-                min-height: 100vh;
-                position: relative;
-                overflow-x: hidden;
-            }
-
-            body::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 300px;
-                background: linear-gradient(135deg, var(--primary-color) 0%, #3949AB 100%);
-                z-index: -1;
-            }
-
-            .registration-container {
-                max-width: 900px;
-                margin: 2rem auto;
-                position: relative;
-                z-index: 1;
-            }
-
-            .card {
-                border: none;
-                border-radius: 20px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-                overflow: hidden;
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(10px);
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-
-            .card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-            }
-
-            .card-header {
-                background: linear-gradient(135deg, var(--primary-color) 0%, #3949AB 100%);
-                color: white;
-                border-radius: 20px 20px 0 0 !important;
-                padding: 2rem;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .card-header::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>') no-repeat center center;
-                background-size: 80% 80%;
-                opacity: 0.1;
-            }
-
-            .logo-container {
-                position: relative;
-                display: inline-block;
-                margin-bottom: 1.5rem;
-            }
-
-            .logo-container img {
-                height: 70px;
-                filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-                transition: transform 0.3s ease;
-            }
-
-            .logo-container:hover img {
-                transform: scale(1.05);
-            }
-
-            .form-wizard-header {
-                background: white;
-                border-radius: 15px;
-                padding: 1.5rem;
-                margin-bottom: 2rem;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            }
-
-            .nav-pills {
-                background: var(--light-bg);
-                padding: 0.5rem;
-                border-radius: 12px;
-            }
-
-            .nav-pills .nav-link {
-                color: var(--text-color);
-                font-weight: 500;
-                padding: 1rem 1.5rem;
-                border-radius: 10px;
-                transition: all 0.3s ease;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .nav-pills .nav-link::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: var(--primary-color);
-                opacity: 0;
-                transition: opacity 0.3s ease;
-                z-index: -1;
-            }
-
-            .nav-pills .nav-link:hover::before {
-                opacity: 0.1;
-            }
-
-            .nav-pills .nav-link.active {
-                background: var(--primary-color);
-                color: white;
-                transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(26, 35, 126, 0.2);
-            }
-
-            .nav-pills .nav-link i {
-                margin-right: 0.5rem;
-                font-size: 1.2rem;
-            }
-
-            .form-control {
-                border-radius: 12px;
-                padding: 0.75rem 1rem;
-                border: 2px solid #e0e0e0;
-                transition: all 0.3s ease;
-                font-size: 0.95rem;
-            }
-
-            .form-control:focus {
-                border-color: var(--primary-color);
-                box-shadow: 0 0 0 0.2rem rgba(26, 35, 126, 0.15);
-            }
-
-            .form-label {
-                font-weight: 500;
-                color: var(--text-color);
-                margin-bottom: 0.5rem;
-                font-size: 0.9rem;
-            }
-
-            .btn {
-                padding: 0.75rem 1.5rem;
-                border-radius: 12px;
-                font-weight: 500;
-                transition: all 0.3s ease;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .btn::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(255,255,255,0.1);
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-
-            .btn:hover::before {
-                transform: translateX(0);
-            }
-
-            .btn-primary {
-                background: var(--primary-color);
-                border: none;
-            }
-
-            .btn-primary:hover {
-                background: #3949AB;
-                transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(26, 35, 126, 0.2);
-            }
-
-            .btn-secondary {
-                background: #757575;
-                border: none;
-            }
-
-            .btn-secondary:hover {
-                background: #616161;
-                transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            }
-
-            .btn-success {
-                background: var(--success-color);
-                border: none;
-            }
-
-            .btn-success:hover {
-                background: #43A047;
-                transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
-            }
-
-            .progress {
-                height: 8px;
-                border-radius: 4px;
-                margin: 1rem 0;
-                background: #e0e0e0;
-                overflow: hidden;
-            }
-
-            .progress-bar {
-                background: linear-gradient(90deg, var(--primary-color) 0%, #3949AB 100%);
-                transition: width 0.5s ease;
-            }
-
-            .invalid-feedback {
-                font-size: 0.8rem;
-                color: var(--error-color);
-                margin-top: 0.25rem;
-            }
-
-            .form-floating {
-                position: relative;
-                margin-bottom: 1rem;
-            }
-
-            .form-floating > .form-control {
-                padding: 1rem 0.75rem;
-            }
-
-            .form-floating > label {
-                position: absolute;
-                top: 0;
-                left: 0;
-                padding: 1rem 0.75rem;
-                pointer-events: none;
-                transform-origin: 0 0;
-                transition: opacity .1s ease-in-out,transform .1s ease-in-out;
-            }
-
-            .form-floating > .form-control:focus ~ label,
-            .form-floating > .form-control:not(:placeholder-shown) ~ label {
-                transform: scale(.85) translateY(-0.5rem) translateX(0.15rem);
-                color: var(--primary-color);
-            }
-
-            .custom-file-input {
-                position: relative;
-                display: inline-block;
-                width: 100%;
-            }
-
-            .custom-file-input input[type="file"] {
-                position: absolute;
-                left: 0;
-                top: 0;
-                opacity: 0;
-                width: 100%;
-                height: 100%;
-                cursor: pointer;
-            }
-
-            .custom-file-label {
-                display: block;
-                padding: 0.75rem 1rem;
-                background: var(--light-bg);
-                border: 2px solid #e0e0e0;
-                border-radius: 12px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
-
-            .custom-file-label:hover {
-                border-color: var(--primary-color);
-                background: rgba(26, 35, 126, 0.05);
-            }
-
-            .payment-section {
-                text-align: center;
-                padding: 2.5rem;
-                background: var(--light-bg);
-                border-radius: 15px;
-                margin-top: 2rem;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-                position: relative;
-                overflow: hidden;
-            }
-
-            .payment-section::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 5px;
-                background: linear-gradient(90deg, var(--primary-color) 0%, #3949AB 100%);
-            }
-
-            .payment-logo {
-                max-width: 200px;
-                margin-bottom: 2rem;
-                filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-                transition: transform 0.3s ease;
-            }
-
-            .payment-logo:hover {
-                transform: scale(1.05);
-            }
-
-            .form-check {
-                margin-top: 1rem;
-                padding-left: 1.8rem;
-            }
-
-            .form-check-input {
-                width: 1.2rem;
-                height: 1.2rem;
-                margin-top: 0.2rem;
-                margin-left: -1.8rem;
-                border: 2px solid #e0e0e0;
-                transition: all 0.3s ease;
-            }
-
-            .form-check-input:checked {
-                background-color: var(--primary-color);
-                border-color: var(--primary-color);
-            }
-
-            .form-check-label {
-                font-size: 0.9rem;
-                color: var(--text-color);
-            }
-
-            .alert {
-                border-radius: 12px;
-                padding: 1rem 1.5rem;
-                margin-bottom: 1.5rem;
-                border: none;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            }
-
-            .alert-success {
-                background: rgba(76, 175, 80, 0.1);
-                color: var(--success-color);
-            }
-
-            .alert-warning {
-                background: rgba(255, 193, 7, 0.1);
-                color: var(--warning-color);
-            }
-
-            .alert-danger {
-                background: rgba(244, 67, 54, 0.1);
-                color: var(--error-color);
-            }
-
-            .tooltip {
-                position: relative;
-                display: inline-block;
-            }
-
-            .tooltip .tooltiptext {
-                visibility: hidden;
-                width: 200px;
-                background-color: var(--text-color);
-                color: white;
-                text-align: center;
-                border-radius: 6px;
-                padding: 0.5rem;
-                position: absolute;
-                z-index: 1;
-                bottom: 125%;
-                left: 50%;
-                transform: translateX(-50%);
-                opacity: 0;
-                transition: opacity 0.3s ease;
-                font-size: 0.8rem;
-            }
-
-            .tooltip:hover .tooltiptext {
-                visibility: visible;
-                opacity: 1;
-            }
-
-            .password-strength {
-                height: 5px;
-                border-radius: 2.5px;
-                margin-top: 0.5rem;
-                background: #e0e0e0;
-                overflow: hidden;
-            }
-
-            .password-strength-bar {
-                height: 100%;
-                width: 0;
-                transition: width 0.3s ease, background-color 0.3s ease;
-            }
-
-            .password-strength-weak {
-                background-color: var(--error-color);
-                width: 33.33%;
-            }
-
-            .password-strength-medium {
-                background-color: var(--warning-color);
-                width: 66.66%;
-            }
-
-            .password-strength-strong {
-                background-color: var(--success-color);
-                width: 100%;
-            }
-
-            .password-requirements {
-                font-size: 0.8rem;
-                color: #757575;
-                margin-top: 0.5rem;
-            }
-
-            .password-requirements ul {
-                padding-left: 1.2rem;
-                margin-bottom: 0;
-            }
-
-            .password-requirements li {
-                margin-bottom: 0.25rem;
-            }
-
-            .password-requirements li.valid {
-                color: var(--success-color);
-            }
-
-            .password-requirements li.valid::before {
-                content: '✓';
-                margin-right: 0.5rem;
-            }
-
-            .bootstrap-tagsinput {
-                border-radius: 12px;
-                padding: 0.5rem;
-                border: 2px solid #e0e0e0;
-                transition: all 0.3s ease;
-                width: 100%;
-            }
-
-            .bootstrap-tagsinput:focus {
-                border-color: var(--primary-color);
-                box-shadow: 0 0 0 0.2rem rgba(26, 35, 126, 0.15);
-            }
-
-            .bootstrap-tagsinput .tag {
-                background-color: var(--primary-color);
-                color: white;
-                border-radius: 6px;
-                padding: 0.25rem 0.5rem;
-                margin-right: 0.25rem;
-                margin-bottom: 0.25rem;
-                display: inline-block;
-            }
-
-            .bootstrap-tagsinput input {
-                border: none;
-                box-shadow: none;
-                outline: none;
-                background-color: transparent;
-                padding: 0;
-                margin: 0;
-                width: auto;
-                max-width: inherit;
-            }
-
-            @media (max-width: 768px) {
-                .registration-container {
-                    margin: 1rem;
-                }
-
-                .nav-pills .nav-link {
-                    padding: 0.75rem;
-                }
-
-                .card-header {
-                    padding: 1.5rem;
-                }
-
-                .payment-section {
-                    padding: 1.5rem;
-                }
-            }
-
-            /* Animation classes */
-            .fade-in {
-                animation: fadeIn 0.5s ease forwards;
-            }
-
-            .slide-in {
-                animation: slideIn 0.5s ease forwards;
-            }
-
-            .scale-in {
-                animation: scaleIn 0.5s ease forwards;
-            }
-
-            @keyframes fadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
-            }
-
-            @keyframes slideIn {
-                from { transform: translateY(20px); opacity: 0; }
-                to { transform: translateY(0); opacity: 1; }
-            }
-
-            @keyframes scaleIn {
-                from { transform: scale(0.95); opacity: 0; }
-                to { transform: scale(1); opacity: 1; }
-            }
-
-            .interest-groups-grid {
-                background: var(--light-bg);
-                border-radius: 12px;
-                padding: 1.5rem;
-                margin-top: 0.5rem;
-            }
-
-            .interest-groups-grid .form-check {
-                padding: 0.75rem 1rem;
-                background: white;
-                border-radius: 8px;
-                border: 2px solid #e0e0e0;
-                margin-bottom: 0;
-                transition: all 0.3s ease;
-            }
-
-            .interest-groups-grid .form-check:hover {
-                border-color: var(--primary-color);
-                transform: translateY(-2px);
-                box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            }
-
-            .interest-groups-grid .form-check-input {
-                margin-top: 0.2rem;
-                border: 2px solid #e0e0e0;
-            }
-
-            .interest-groups-grid .form-check-input:checked {
-                background-color: var(--primary-color);
-                border-color: var(--primary-color);
-            }
-
-            .interest-groups-grid .form-check-label {
-                margin-left: 0.5rem;
-                font-size: 0.9rem;
-                color: var(--text-color);
-            }
-
-            .interest-groups-grid .row {
-                margin: -0.5rem;
-            }
-
-            .interest-groups-grid .col-md-4 {
-                padding: 0.5rem;
-            }
-
-            .membership-info {
-                background: linear-gradient(135deg, rgba(26, 35, 126, 0.05) 0%, rgba(57, 73, 171, 0.05) 100%);
-                border-radius: 12px;
-                padding: 1.5rem;
-                margin-bottom: 2rem;
-                border: 2px solid rgba(26, 35, 126, 0.1);
-            }
-
-            .membership-info h5 {
-                color: var(--primary-color);
-                font-weight: 600;
-                margin-bottom: 1rem;
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-            }
-
-            .membership-info h5 i {
-                font-size: 1.4rem;
-            }
-
-            .membership-info .info-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 1.5rem;
-                margin-top: 1rem;
-            }
-
-            .info-card {
-                background: white;
-                border-radius: 8px;
-                padding: 1rem;
-                border: 1px solid #e0e0e0;
-                transition: all 0.3s ease;
-            }
-
-            .info-card:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-                border-color: var(--primary-color);
-            }
-
-            .info-card h6 {
-                color: var(--primary-color);
-                font-weight: 600;
-                margin-bottom: 0.5rem;
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-            }
-
-            .info-card h6 i {
-                font-size: 1.2rem;
-            }
-
-            .info-card p {
-                color: var(--text-color);
-                font-size: 0.9rem;
-                margin-bottom: 0;
-                line-height: 1.5;
-            }
-
-            .info-card ul {
-                list-style: none;
-                padding-left: 0;
-                margin-bottom: 0;
-            }
-
-            .info-card ul li {
-                position: relative;
-                padding-left: 1.5rem;
-                margin-bottom: 0.5rem;
-                font-size: 0.9rem;
-                color: var(--text-color);
-            }
-
-            .info-card ul li:before {
-                content: '✓';
-                position: absolute;
-                left: 0;
-                color: var(--success-color);
-                font-weight: bold;
-            }
-
-            .declaration-section {
-                background: var(--light-bg);
-                border-radius: 12px;
-                padding: 1.5rem;
-                margin-bottom: 2rem;
-            }
-
-            .declaration-box {
-                background: white;
-                border-radius: 8px;
-                border: 2px solid #e0e0e0;
-            }
-
-            .declaration-section h5 {
-                color: var(--primary-color);
-                font-weight: 600;
-            }
-
-            .declaration-box .form-check {
-                margin: 0.5rem 0;
-            }
-
-            .declaration-box .form-check-input:checked {
-                background-color: var(--primary-color);
-                border-color: var(--primary-color);
-            }
-
-            .declaration-box .form-check-label {
-                font-size: 0.95rem;
-                color: var(--text-color);
-                line-height: 1.5;
-            }
-        </style>
-    </head>
-
-<body class="authentication-bg">
-    <div class="registration-container">
-        <div class="card">
-            <div class="card-header text-center">
-                <div class="logo-container">
-                    <img src="{{ asset('img-assets/csz.png') }}" alt="CSZ Logo">
+@extends('layouts.master2')
+
+@section('content')
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card overflow-hidden">
+                <div class="bg-soft-primary">
+                    <div class="row">
+                        <div class="col-7">
+                            <div class="text-primary p-4">
+                                <h5 class="text-primary">Graduate Membership Registration</h5>
+                            </div>
+                        </div>
+                        <div class="col-5 align-self-end">
+                            <img src="{{ asset('assets/images/profile-img.png') }}" alt="" class="img-fluid">
+                        </div>
+                    </div>
                 </div>
-                <h4 class="mb-0">Graduate Membership Registration</h4>
-                <p class="mb-0 mt-2 opacity-75">Join the Computer Society of Zimbabwe and advance your professional career</p>
+                <div class="card-body pt-0">
+                    <div>
+                        <a href="/">
+                            <div class="avatar-md profile-user-wid mb-4">
+                                            <span>
+                                                <img src="{{ asset('assets/images/csz.png') }}" alt="logo"
+                                                     height="45">
+                                            </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-2">
+
+                        <form name="student" action="{{ route('initialise') }}" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+
+                            <div id="progrss-wizard" class="twitter-bs-wizard">
+                                <ul class="twitter-bs-wizard-nav nav-justified">
+                                    <li class="nav-item">
+                                        <a href="#account-2" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
+                                            <span class="step-number mr-2">01</span>
+                                            Account
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#profile-tab-2" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
+                                            <span class="step-number mr-2">03</span>
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#finish-2" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
+                                            <span class="step-number mr-2">03</span>
+                                            Payment
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div id="bar" class="progress mt-4">
+                                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"></div>
+                                </div>
+                                <div class="tab-content twitter-bs-wizard-tab-content">
+                                    <div class="tab-pane" id="account-2">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label" for="userName1">Chapter Affiliation</label>
+                                                    <div class="col-md-9">
+                                                        <select type="text" class="form-control"  name="chapter" required>
+                                                            <option>Gweru</option>
+                                                            <option>Harare</option>
+                                                            <option>Kwekwe</option>
+                                                            <option>Mutare</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label" for="userName1">Interest Groups</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control"  name="interest_group" data-role="tagsinput" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label"> First Name</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" name="name" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label">Date Of Bith</label>
+                                                    <div class="col-md-9">
+                                                        <input type="date" class="form-control" name="date_of_bith"  placeholder="mm/dd/yyyy" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label">Surname</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" id="password1" name="surname" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label">Email</label>
+                                                    <div class="col-md-9">
+                                                        <input type="email" id="password1" name="email" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label" for="password1"> Password</label>
+                                                    <div class="col-md-9">
+                                                        <input type="password" id="password1" name="password1" class="form-control"  required>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end col -->
+                                        </div> <!-- end row -->
+                                    </div>
+
+                                    <div class="tab-pane" id="profile-tab-2">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label" for="name1"> Mobile Number</label>
+                                                    <div class="col-md-9">
+                                                        <input type="number"  name="phonenumber" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label">Graduating  School</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" id="school" name="surname1" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label">Certifiate </label>
+                                                    <div class="col-md-9">
+                                                        <input type="file" name="school_id" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label">National ID</label>
+                                                    <div class="col-md-9">
+                                                        <input type="file" name="national_id" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label" for="surname1">Reason For Joining CSZ</label>
+                                                    <div class="col-md-9">
+                                                        <textarea type="text" id="notes" rows="3" cols="3" name="notes" class="form-control" required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label class="col-md-3 col-form-label" for="surname1">Physical Address</label>
+                                                    <div class="col-md-9">
+                                                        <textarea type="text" id="address" rows="3" cols="3" name="address" class="form-control" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end col -->
+                                        </div> <!-- end row -->
+                                    </div>
+
+                                    <div class="tab-pane" id="finish-2">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="text-center">
+                                                    <img src="images/paynow.svg" width="200px" height="100px">
+                                                    <div class="form-group row mb-3">
+                                                        <label class="col-md-3 col-form-label">Membership Amount</label>
+                                                        <div class="col-md-9">
+                                                            <input type="number" name="number" class="form-control" value="150" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end col -->
+                                        </div> <!-- end row -->
+                                    </div>
+                                </div>
+                                <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                    <li class="previous"><a href="javascript: void(0);">Previous</a></li>
+                                    <li class="next"><a href="javascript: void(0);">Next</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-primary" name="student" type="submit">Register</button>
+                            </div>
+                        </form>
+
                     </div>
 
-            <div class="card-body p-4">
-                <form id="registrationForm" action="{{ route('initialise') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-                    @csrf
-                    <div class="form-wizard-header">
-                        <ul class="nav nav-pills nav-justified" role="tablist">
-                                          <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="pill" href="#account">
-                                    <i class="mdi mdi-account-circle"></i>
-                                                  <span class="d-none d-sm-inline">Account</span>
-                                              </a>
-                                          </li>
-                                          <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#profile">
-                                    <i class="mdi mdi-face-profile"></i>
-                                                  <span class="d-none d-sm-inline">Profile</span>
-                                              </a>
-                                          </li>
-                                          <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#payment">
-                                    <i class="mdi mdi-credit-card"></i>
-                                                  <span class="d-none d-sm-inline">Payment</span>
-                                              </a>
-                                          </li>
-                                      </ul>
+                </div>
+            </div>
 
-                        <div class="progress mt-3">
-                            <div class="progress-bar" role="progressbar" style="width: 33%"></div>
-                        </div>
-                                          </div>
+        </div>
+    </div>
 
-                    <div class="tab-content">
-                        <!-- Account Tab -->
-                        <div class="tab-pane fade show active fade-in" id="account">
-                            <div class="membership-info">
-                                <h5><i class="mdi mdi-school-outline"></i> Graduate Membership Information</h5>
-                                <p>Take the next step in your professional journey with CSZ Graduate Membership!</p>
-
-                                <div class="info-grid">
-                                    <div class="info-card">
-                                        <h6><i class="mdi mdi-account-check"></i>Eligibility</h6>
-                                        <ul>
-                                            <li>Recently graduated from a recognized institution</li>
-                                            <li>Completed an IT-related degree or program</li>
-                                            <li>Valid graduation certificate required</li>
-                                            <li>Fresh graduates within 2 years of completion</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="info-card">
-                                        <h6><i class="mdi mdi-star"></i>Benefits</h6>
-                                        <ul>
-                                            <li>Professional networking events and conferences</li>
-                                            <li>Career development resources</li>
-                                            <li>Mentorship opportunities</li>
-                                            <li>Industry insights and publications</li>
-                                            <li>Exclusive job board access</li>
-                                            <li>Professional growth workshops</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="info-card">
-                                        <h6><i class="mdi mdi-information"></i>Important Notes</h6>
-                                        <ul>
-                                            <li>Annual membership fee: $150</li>
-                                            <li>Valid for one year from registration</li>
-                                            <li>Must be renewed annually</li>
-                                            <li>Subject to CSZ Code of Ethics</li>
-                                            <li>Career transition support</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Chapter Affiliation</label>
-                                    <select class="form-select" name="chapter" required>
-                                        <option value="">Select Chapter</option>
-                                        <option value="Gweru">Gweru</option>
-                                        <option value="Harare">Harare</option>
-                                        <option value="Kwekwe">Kwekwe</option>
-                                        <option value="Mutare">Mutare</option>
-                                                            </select>
-                                    <div class="invalid-feedback">Please select a chapter</div>
-                                </div>
-
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">Interest Groups</label>
-                                    <div class="interest-groups-grid">
-                                        <div class="row g-3">
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="Free & Open Source" id="interest1">
-                                                    <label class="form-check-label" for="interest1">Free & Open Source</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="Software Development" id="interest2">
-                                                    <label class="form-check-label" for="interest2">Software Development</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="IT Consultancy" id="interest3">
-                                                    <label class="form-check-label" for="interest3">IT Consultancy</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="IT Governance" id="interest4">
-                                                    <label class="form-check-label" for="interest4">IT Governance</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="Cybercrime/Cybersecurity" id="interest5">
-                                                    <label class="form-check-label" for="interest5">Cybercrime/Cybersecurity</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="Information Security/IT Risk" id="interest6">
-                                                    <label class="form-check-label" for="interest6">Information Security/IT Risk</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="Renewable energy" id="interest7">
-                                                    <label class="form-check-label" for="interest7">Renewable energy</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="Ethical hacking / forensics" id="interest8">
-                                                    <label class="form-check-label" for="interest8">Ethical hacking / forensics</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="Project management" id="interest9">
-                                                    <label class="form-check-label" for="interest9">Project management</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="Leadership" id="interest10">
-                                                    <label class="form-check-label" for="interest10">Leadership</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="Sustainability/Green IT" id="interest11">
-                                                    <label class="form-check-label" for="interest11">Sustainability/Green IT</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="Disaster Recovery/BCM" id="interest12">
-                                                    <label class="form-check-label" for="interest12">Disaster Recovery/BCM</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="Soft skills" id="interest13">
-                                                    <label class="form-check-label" for="interest13">Soft skills</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="Mobile app development" id="interest14">
-                                                    <label class="form-check-label" for="interest14">Mobile app development</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="interest_groups[]" value="Cloud technologies" id="interest15">
-                                                    <label class="form-check-label" for="interest15">Cloud technologies</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="invalid-feedback">Please select at least one interest group</div>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">First Name</label>
-                                    <input type="text" class="form-control" name="name" required>
-                                    <div class="invalid-feedback">Please enter your first name</div>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Surname</label>
-                                    <input type="text" class="form-control" name="surname" required>
-                                    <div class="invalid-feedback">Please enter your surname</div>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Date of Birth</label>
-                                    <input type="date" class="form-control" name="date_of_birth" required>
-                                    <div class="invalid-feedback">Please enter your date of birth</div>
-                                                        </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Email</label>
-                                    <input type="email" class="form-control" name="email" required>
-                                    <div class="invalid-feedback">Please enter a valid email address</div>
-                                 </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Password</label>
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" name="password" id="password" required
-                                               pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
-                                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-                                            <i class="mdi mdi-eye"></i>
-                                        </button>
-                                    </div>
-                                    <div class="password-strength">
-                                        <div class="password-strength-bar" id="password-strength-bar"></div>
-                                    </div>
-                                    <div class="password-requirements">
-                                        <ul>
-                                            <li id="length-check">At least 8 characters</li>
-                                            <li id="letter-check">Contains letters</li>
-                                            <li id="number-check">Contains numbers</li>
-                                        </ul>
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Password must be at least 8 characters long and contain both letters and numbers
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Confirm Password</label>
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" required>
-                                        <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
-                                            <i class="mdi mdi-eye"></i>
-                                        </button>
-                                    </div>
-                                    <div class="invalid-feedback" id="password-match-feedback">
-                                        Passwords do not match
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Profile Tab -->
-                        <div class="tab-pane fade slide-in" id="profile">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Mobile Number</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">+263</span>
-                                        <input type="tel" class="form-control" name="phonenumber"
-                                               pattern="^[7-8][1-9][0-9]{7}$" required>
-                                    </div>
-                                    <div class="invalid-feedback">Please enter a valid Zimbabwean mobile number</div>
-                                                        </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Graduating School</label>
-                                    <input type="text" class="form-control" name="graduating_school" required>
-                                    <div class="invalid-feedback">Please enter your graduating school</div>
-                                                    </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Certificate</label>
-                                    <div class="custom-file-input">
-                                        <input type="file" class="form-control" name="school_id" accept="image/*,.pdf" required>
-                                        <label class="custom-file-label">Choose file</label>
-                                                        </div>
-                                    <div class="invalid-feedback">Please upload your certificate</div>
-                                                    </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">National ID</label>
-                                    <div class="custom-file-input">
-                                        <input type="file" class="form-control" name="national_id" accept="image/*,.pdf" required>
-                                        <label class="custom-file-label">Choose file</label>
-                                                          </div>
-                                    <div class="invalid-feedback">Please upload your national ID</div>
-                                                      </div>
-
-                                <div class="col-12 mb-3">
-                                    <label class="form-label">Reason For Joining CSZ</label>
-                                    <textarea class="form-control" name="notes" rows="3" required></textarea>
-                                    <div class="invalid-feedback">Please tell us why you want to join CSZ</div>
-                                          </div>
-
-                                <div class="col-12 mb-3">
-                                    <label class="form-label">Physical Address</label>
-                                    <textarea class="form-control" name="address" rows="3" required></textarea>
-                                    <div class="invalid-feedback">Please enter your physical address</div>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="declaration-section">
-                                        <h5 class="mb-3">Section G: Declaration by Applicant</h5>
-                                        <div class="declaration-box p-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="declaration1" name="declaration[]" required>
-                                                <label class="form-check-label" for="declaration1">
-                                                    1. I hereby apply for admission to the Computer Society of Zimbabwe
-                                                </label>
-                                            </div>
-                                            <div class="form-check mt-2">
-                                                <input class="form-check-input" type="checkbox" id="declaration2" name="declaration[]" required>
-                                                <label class="form-check-label" for="declaration2">
-                                                    2. I undertake to abide by the Constitution, Code of Ethics, Code of Professional Conduct, Rules and by-laws of the Society
-                                                </label>
-                                            </div>
-                                            <div class="form-check mt-2">
-                                                <input class="form-check-input" type="checkbox" id="declaration3" name="declaration[]" required>
-                                                <label class="form-check-label" for="declaration3">
-                                                    3. I hereby enclose proof of payment of the non-refundable application processing fee
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            You must agree to all declarations before proceeding
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Payment Tab -->
-                        <div class="tab-pane fade scale-in" id="payment">
-                            <div class="payment-section">
-                                <img src="images/paynow.svg" alt="PayNow" class="payment-logo">
-
-                                <div class="row justify-content-center">
-                                    <div class="col-md-8">
-                                        <div class="mb-3">
-                                            <label class="form-label">Ecocash Number</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text">07</span>
-                                                <input type="tel" class="form-control" name="ecocash_number"
-                                                       pattern="[1-9][0-9]{7}" required>
-                                                        </div>
-                                            <div class="invalid-feedback">Please enter a valid Ecocash number</div>
-                                                    </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Membership Amount</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text">$</span>
-                                                <input type="number" class="form-control" name="amount" value="150" readonly>
-                                                        </div>
-                                                    </div>
-
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="terms" required>
-                                            <label class="form-check-label" for="terms">
-                                                I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</a>
-                                            </label>
-                                            <div class="invalid-feedback">You must agree to the terms and conditions</div>
-                                                        </div>
-                                                    </div>
-                                                        </div>
-                                                    </div>
-                                                        </div>
-                                                    </div>
-
-                    <div class="d-flex justify-content-between mt-4">
-                        <button type="button" class="btn btn-secondary" id="prevBtn">Previous</button>
-                        <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
-                        <button type="submit" class="btn btn-success" id="submitBtn" style="display: none;">Submit Registration</button>
-                                          </div>
-                </form>
-                                                            </div>
-                                                        </div>
-                                                      </div>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-tagsinput@0.7.1/dist/bootstrap-tagsinput.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('registrationForm');
-            const tabs = document.querySelectorAll('.nav-link');
-            const progressBar = document.querySelector('.progress-bar');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const submitBtn = document.getElementById('submitBtn');
-            let currentTab = 0;
-
-            // Update progress bar
-            function updateProgress() {
-                const progress = ((currentTab + 1) / tabs.length) * 100;
-                progressBar.style.width = progress + '%';
-            }
-
-            // Show/hide buttons
-            function updateButtons() {
-                prevBtn.style.display = currentTab === 0 ? 'none' : 'inline-block';
-                nextBtn.style.display = currentTab === tabs.length - 1 ? 'none' : 'inline-block';
-                submitBtn.style.display = currentTab === tabs.length - 1 ? 'inline-block' : 'none';
-            }
-
-            // Validate current tab
-            function validateTab() {
-                const currentPane = document.querySelector(`.tab-pane:nth-child(${currentTab + 1})`);
-                const inputs = currentPane.querySelectorAll('input, select, textarea');
-                let isValid = true;
-
-                inputs.forEach(input => {
-                    if (input.hasAttribute('required') && !input.value) {
-                        isValid = false;
-                        input.classList.add('is-invalid');
-                    } else {
-                        input.classList.remove('is-invalid');
-                    }
-                });
-
-                return isValid;
-            }
-
-            // Switch tabs
-            function switchTab(n) {
-                if (n === 1 && !validateTab()) return;
-
-                tabs[currentTab].classList.remove('active');
-                document.querySelectorAll('.tab-pane')[currentTab].classList.remove('show', 'active');
-
-                currentTab = n;
-
-                tabs[currentTab].classList.add('active');
-                document.querySelectorAll('.tab-pane')[currentTab].classList.add('show', 'active');
-
-                updateProgress();
-                updateButtons();
-            }
-
-            // Event listeners
-            prevBtn.addEventListener('click', () => switchTab(currentTab - 1));
-            nextBtn.addEventListener('click', () => switchTab(currentTab + 1));
-
-            // File input labels
-            document.querySelectorAll('input[type="file"]').forEach(input => {
-                input.addEventListener('change', function() {
-                    const label = this.nextElementSibling;
-                    label.textContent = this.files[0]?.name || 'Choose file';
-                });
-            });
-
-            // Form submission
-            form.addEventListener('submit', function(event) {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                } else {
-                    // Show success message
-                    const alert = document.createElement('div');
-                    alert.className = 'alert alert-success fade-in';
-                    alert.innerHTML = '<i class="mdi mdi-check-circle me-2"></i> Your registration has been submitted successfully!';
-                    form.insertBefore(alert, form.firstChild);
-
-                    // Disable submit button
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Processing...';
-                }
-                form.classList.add('was-validated');
-            });
-
-            // Initialize
-            updateProgress();
-            updateButtons();
-
-            // Password handling
-            const passwordEl = document.getElementById('password');
-            const confirmPasswordEl = document.getElementById('password_confirmation');
-            const togglePasswordBtn = document.getElementById('togglePassword');
-            const toggleConfirmPasswordBtn = document.getElementById('toggleConfirmPassword');
-            const strengthBar = document.getElementById('password-strength-bar');
-            const lengthCheckEl = document.getElementById('length-check');
-            const letterCheckEl = document.getElementById('letter-check');
-            const numberCheckEl = document.getElementById('number-check');
-            const matchFeedback = document.getElementById('password-match-feedback');
-
-            // Password strength checker
-            if (passwordEl) {
-                passwordEl.addEventListener('input', function() {
-                    const password = this.value;
-
-                    // Check length
-                    if (password.length >= 8) {
-                        lengthCheckEl.classList.add('valid');
-                    } else {
-                        lengthCheckEl.classList.remove('valid');
-                    }
-
-                    // Check for letters
-                    if (/[A-Za-z]/.test(password)) {
-                        letterCheckEl.classList.add('valid');
-                    } else {
-                        letterCheckEl.classList.remove('valid');
-                    }
-
-                    // Check for numbers
-                    if (/\d/.test(password)) {
-                        numberCheckEl.classList.add('valid');
-                    } else {
-                        numberCheckEl.classList.remove('valid');
-                    }
-
-                    // Update strength bar
-                    if (password.length < 8) {
-                        strengthBar.className = 'password-strength-bar';
-                    } else if (password.length >= 8 && /[A-Za-z]/.test(password) && /\d/.test(password)) {
-                        strengthBar.className = 'password-strength-bar password-strength-strong';
-                    } else if (password.length >= 8 && (/[A-Za-z]/.test(password) || /\d/.test(password))) {
-                        strengthBar.className = 'password-strength-bar password-strength-medium';
-                    } else {
-                        strengthBar.className = 'password-strength-bar password-strength-weak';
-                    }
-
-                    // Check password match
-                    if (confirmPasswordEl && confirmPasswordEl.value) {
-                        validatePasswordMatch();
-                    }
-                });
-            }
-
-            // Toggle password visibility
-            if (togglePasswordBtn && passwordEl) {
-                togglePasswordBtn.addEventListener('click', function() {
-                    const type = passwordEl.getAttribute('type') === 'password' ? 'text' : 'password';
-                    passwordEl.setAttribute('type', type);
-                    this.querySelector('i').className = `mdi mdi-eye${type === 'password' ? '' : '-off'}`;
-                });
-            }
-
-            if (toggleConfirmPasswordBtn && confirmPasswordEl) {
-                toggleConfirmPasswordBtn.addEventListener('click', function() {
-                    const type = confirmPasswordEl.getAttribute('type') === 'password' ? 'text' : 'password';
-                    confirmPasswordEl.setAttribute('type', type);
-                    this.querySelector('i').className = `mdi mdi-eye${type === 'password' ? '' : '-off'}`;
-                });
-            }
-
-            // Password match validation
-            function validatePasswordMatch() {
-                if (!passwordEl || !confirmPasswordEl) return;
-
-                if (confirmPasswordEl.value !== passwordEl.value) {
-                    confirmPasswordEl.setCustomValidity('Passwords do not match');
-                    if (matchFeedback) matchFeedback.style.display = 'block';
-                } else {
-                    confirmPasswordEl.setCustomValidity('');
-                    if (matchFeedback) matchFeedback.style.display = 'none';
-                }
-            }
-
-            if (confirmPasswordEl) {
-                confirmPasswordEl.addEventListener('input', validatePasswordMatch);
-            }
-        });
-    </script>
-</body>
-</html>
+@endsection
