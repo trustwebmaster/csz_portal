@@ -201,7 +201,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="timeline-item">
                                 <div class="timeline-marker bg-success"></div>
                                 <div class="timeline-content">
@@ -268,7 +268,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="text-center mt-4">
                             <button class="btn btn-outline-primary">
                                 <i class="bx bx-refresh me-1"></i> Load More Events
@@ -408,12 +408,12 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label class="fw-bold">Description:</label>
                             <p class="text-muted">Join industry leaders, technology experts, and ICT professionals for two days of insightful presentations, workshops, and networking opportunities. Topics include digital transformation, cybersecurity, AI applications, and the future of technology in Zimbabwe.</p>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label class="fw-bold">Learning Objectives:</label>
                             <ul class="text-muted">
@@ -424,7 +424,7 @@
                                 <li>Gain insights into future technology developments</li>
                             </ul>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label class="fw-bold">Requirements:</label>
                             <ul class="text-muted">

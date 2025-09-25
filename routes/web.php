@@ -32,9 +32,10 @@ Route::group(['middleware' => 'auth'] , function () {
        Route::get('membership', 'MembersController@membership');
        Route::post('/editmember' , 'MembersController@editmember')->name('edit-member');
        Route::get('/user/membership-renewal' , 'MembersController@membershipRenewal')->name('user.membership-renewal');
-       Route::get('/user/cpd-events' , 'MembersController@cpdEvents')->name('user.cpd-events');
-       Route::get('/user/cpd-points' , 'MembersController@cpdPoints')->name('user.cpd-points');
-       Route::get('/user/profile' , 'MembersController@userProfile')->name('user.profile');
+        Route::get('/user/cpd-events' , 'MembersController@cpdEvents')->name('user.cpd-events');
+        Route::get('/user/cpd-points' , 'MembersController@cpdPoints')->name('user.cpd-points');
+        Route::post('/user/cpd-submit' , 'MembersController@submitCpdActivity')->name('user.cpd-submit');
+        Route::get('/user/profile' , 'MembersController@userProfile')->name('user.profile');
    });
 });
 
