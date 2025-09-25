@@ -48,12 +48,103 @@ class MembersController extends Controller
 
     public function cpdEvents()
     {
-        return view('member.cpd-events');
+        // In a real implementation, you would fetch events from database
+        $featuredEvents = [
+            [
+                'title' => 'Annual ICT Conference 2024',
+                'category' => 'Level 2 - Professional',
+                'cpd_units' => 15,
+                'date' => '2024-12-15',
+                'location' => 'Harare International Conference Centre',
+                'description' => 'Join industry leaders discussing emerging technologies and digital transformation.'
+            ],
+            [
+                'title' => 'Cybersecurity Masterclass',
+                'category' => 'Level 2 - Education',
+                'cpd_units' => 8,
+                'date' => '2024-11-20',
+                'location' => 'Online Workshop',
+                'description' => 'Comprehensive workshop on modern cybersecurity threats and prevention strategies.'
+            ]
+        ];
+
+        return view('member.cpd-events', compact('featuredEvents'));
     }
 
     public function cpdPoints()
     {
-        return view('member.cpd-points');
+        $user = Auth::user();
+
+        // In a real implementation, fetch from database
+        $cpdProgress = [
+            'total_units' => 18,
+            'required_units' => 20,
+            'level1_units' => 3,
+            'level2_professional_units' => 12,
+            'level2_volunteer_units' => 3,
+            'level2_education_units' => 0,
+            'level3_training_hours' => 0,
+            'level3_academic_units' => 0,
+            'compliance_percentage' => 90
+        ];
+
+        $cpdActivities = [
+            [
+                'title' => 'ICT Conference Presentation',
+                'subtitle' => 'Future of Digital Transformation',
+                'category' => 'Level 2 - Professional',
+                'date' => '2024-09-15',
+                'cpd_units' => 15,
+                'status' => 'Approved'
+            ],
+            [
+                'title' => 'Online Cybersecurity Course',
+                'subtitle' => 'CompTIA Security+ Fundamentals',
+                'category' => 'Level 1 - Self-Directed',
+                'date' => '2024-08-20',
+                'cpd_units' => 3,
+                'status' => 'Approved'
+            ],
+            [
+                'title' => 'CSZ Committee Participation',
+                'subtitle' => 'Technical Standards Committee',
+                'category' => 'Level 2 - Volunteer',
+                'date' => '2024-07-10',
+                'cpd_units' => 3,
+                'status' => 'Approved'
+            ],
+            [
+                'title' => 'Cloud Computing Workshop',
+                'subtitle' => 'AWS Fundamentals Workshop',
+                'category' => 'Level 2 - Education',
+                'date' => '2024-09-22',
+                'cpd_units' => 6,
+                'status' => 'Pending Review'
+            ]
+        ];
+
+        return view('member.cpd-points', compact('cpdProgress', 'cpdActivities'));
+    }
+
+    public function submitCpdActivity(Request $request)
+    {
+        // Validate the CPD submission
+        $request->validate([
+            'activity_title' => 'required|string|max:255',
+            'cpd_category' => 'required|string',
+            'activity_date' => 'required|date',
+            'duration' => 'required|string',
+            'cpd_units_claimed' => 'required|integer|min:1',
+            'activity_description' => 'required|string',
+            'learning_outcomes' => 'required|string',
+            'evidence.*.evidence_file' => 'required|file|mimes:pdf,jpg,jpeg,png,doc,docx|max:5120',
+            'evidence.*.evidence_description' => 'required|string'
+        ]);
+
+        // In a real implementation, save to database and handle file uploads
+        Alert::success('CPD Submission', 'Your CPD activity has been submitted for review successfully!');
+
+        return redirect()->route('user.cpd-points');
     }
 
     public function editmember(Request $request)
